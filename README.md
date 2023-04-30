@@ -24,7 +24,7 @@
     + int8_t/uint8_t instead of char/unsigned char in data structures.
     + int16_t/uint16_t instead of short/unsigned short in data structures.
     + int32_t/uint32_t instead of int/unsigned int in data structures.
-    + int64_t/uint64_t instead of long long/unsigned long long (long is 32bit in Windows) in data structures.
+    + int64_t/uint64_t instead of long long/unsigned long long (long is 32-bit in Windows) in data structures.
     + Specified width integers in ensure the data structures are same size independent on platforms.
     + int and familiar is prefer because this help compiler do optimization.
 
@@ -34,10 +34,10 @@
 5. Use value semantic, pass-by-value. For performance reason, make sure use const to prevent evil work on data structures.
 6. Typedef struct, enum, union. Prefer explicit aligned data structures.
     ```c
-    typedef struct ALIGNAS(Vector3, 16) // ALIGNAS is crossplatform of __declspec(align)
+    typedef struct ALIGNAS(vec3, 16) // ALIGNAS is crossplatform of __declspec(align)
     {
         float x, y, z;
-    } Vector3;
+    } vec3;
 
     typedef enum WindowFlags
     {
@@ -50,6 +50,16 @@
         uint64_t    onUnix;
     } Handle;
     ```
+7. Plain-old data prefer to C++ struct.
+8. Avoid use C++ namespace, because C doesnot support. So avoid enum class too.
+9. Extended primitive types: vectors and matrices (for graphics and game programming)
+    + vec2, vec3, vec4: single precision floating-point vectors (32-bit per component)
+    + ivec2, ivec3, ivec4: signed integer vectors (32-bit per component)
+    + uvec2, uvec4, uvec4: unsigned interger vectors (32-bit per component)
+    + mat2, mat3, mat4: single precision floating-point matrices (32-bit per component)
+    + imat2, imat3, imat4: signed integer vectors (32-bit per component)
+    + umat2, umat3, umat4: unsigned integer vectors (32-bit per component)
+    + bool2, bool3, bool4: one-byte wide component (1-bit per component)
 
 ## Scoping
 
@@ -74,7 +84,7 @@
 2. Libraries/modules should be small. The smallest size of a library is a single header file. The smallest size of a module is a function.
 3. Prefer test of module, usage of module. Unit tests should help, but not always.
 4. Should have an real-life application come with it.
-5. Everything should have been maintaining, so this place of vcs.
+5. Everything should have been maintaining, so the place of vcs.
 
 ## Build system
 
