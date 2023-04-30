@@ -46,8 +46,8 @@
 
     typedef union Handle
     {
-        void* onWindows;
-        U64   onUnix;
+        void*       onWindows;
+        uint64_t    onUnix;
     } Handle;
     ```
 
