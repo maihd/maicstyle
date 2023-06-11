@@ -1,5 +1,21 @@
 # C/C++ programming style
 
+## Inventing in Principles
+- Immediate feedback
+- What you seed is what you get: WYSIWYG
+- Simple, open, immediate, low level, debug
+    - The new SOLID principles
+    - Keep it simple and small, for product
+    - Keep it slow and steady, for development product
+    - Open mind to the problem
+    - Open data for program to what it need to do
+    - Open source for people
+    - Immediate feedback, can be called low latency iterations
+    - Low level for abstactions
+    - Love and passion
+    - Debug easily, development focus, better tools
+    - All principles support each others.
+    
 ## Languages, Standards, Spirits
 - Use C99 and C++14
 - Follow spririts of C, simple and easy to read
