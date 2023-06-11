@@ -32,15 +32,15 @@
 
 ## Naming convention
 
-1. Typename: PascalCase. Ex: Texture, Shader, Image, ...
-2. Function name: CamelCase, ModuleName_CamelCase. Ex: ArrayPush, Texture_New, ...
-3. Enums, constants: ALL_CAPS_CASE. Ex: PI, NULL, PIXEL_RGBA, ...
-4. Enums only: TypeName_MemberName. Ex: JsonError_OutOfMemory, FileAccess_ReadWrite, ...
-5. Variables, fields, paramaters: camelCase. Ex: texture.width, texture.height, ...
+- Typename: PascalCase. Ex: Texture, Shader, Image, ...
+- Function name: CamelCase, ModuleName_CamelCase. Ex: ArrayPush, Texture_New, ...
+- Enums, constants: ALL_CAPS_CASE. Ex: PI, NULL, PIXEL_RGBA, ...
+- Enums only: TypeName_MemberName. Ex: JsonError_OutOfMemory, FileAccess_ReadWrite, ...
+- Variables, fields, paramaters: camelCase. Ex: texture.width, texture.height, ...
 
 ## Types
 
-1. Integer type: use specified width integers for data structures, int for parameters, return types, local variables.
+- Integer type: use specified width integers for data structures, int for parameters, return types, local variables.
     + int8_t/uint8_t instead of char/unsigned char in data structures.
     + int16_t/uint16_t instead of short/unsigned short in data structures.
     + int32_t/uint32_t instead of int/unsigned int in data structures.
@@ -48,11 +48,11 @@
     + Specified width integers in ensure the data structures are same size independent on platforms.
     + int and familiar is prefer because this help compiler do optimization.
 
-2. float prefer to double, only use double when needed.
-3. Generic types: Array(T), Buffer(T), HashTable(T). Avoid T* for multiple values.
-4. T* mean pass-by-reference, it mustnot be NULL.
-5. Use value semantic, pass-by-value. For performance reason, make sure use const to prevent evil work on data structures.
-6. Typedef struct, enum, union. Prefer explicit aligned data structures.
+- float prefer to double, only use double when needed.
+- Generic types: Array(T), Buffer(T), HashTable(T). Avoid T* for multiple values.
+- T* mean pass-by-reference, it mustnot be NULL.
+- Use value semantic, pass-by-value. For performance reason, make sure use const to prevent evil work on data structures.
+- Typedef struct, enum, union. Prefer explicit aligned data structures.
     ```c
     typedef struct ALIGNAS(vec3, 16) // ALIGNAS is crossplatform of __declspec(align)
     {
@@ -70,9 +70,9 @@
         uint64_t    onUnix;
     } Handle;
     ```
-7. Plain-old data prefer to C++ struct.
-8. Avoid use C++ namespace, because C doesnot support. So avoid enum class too.
-9. Extended primitive types: vectors and matrices (for graphics and game programming)
+- Plain-old data prefer to C++ struct.
+- Avoid use C++ namespace, because C doesnot support. So avoid enum class too.
+- Extended primitive types: vectors and matrices (for graphics and game programming)
     + vec2, vec3, vec4: single precision floating-point vectors (32-bit per component)
     + ivec2, ivec3, ivec4: signed integer vectors (32-bit per component)
     + uvec2, uvec4, uvec4: unsigned interger vectors (32-bit per component)
@@ -83,35 +83,35 @@
 
 ## Scoping
 
-1. Single '{' '}' in one line, add newline after it.
-2. But all definition of macro when have multiple lines.
+- Single '{' '}' in one line, add newline after it.
+- But all definition of macro when have multiple lines.
 
 ## File layout
 
-1. Optional meta information, grouping by a block of comments
-2. Pragma, header guards, compiler/linker options
-3. Include all needed dependencies
-4. Declaration of all types
-5. Declaration of all functions/macros. But donot declare `main`.
-6. Definitions of all types
-7. Definitions of all functions
-8. An optional end-of-file mark
-9. Should end with a newline, some compiler need this
+- Optional meta information, grouping by a block of comments
+- Pragma, header guards, compiler/linker options
+- Include all needed dependencies
+- Declaration of all types
+- Declaration of all functions/macros. But donot declare `main`.
+- Definitions of all types
+- Definitions of all functions
+- An optional end-of-file mark
+- Should end with a newline, some compilers need this (gcc family) 
 
 ## Project architecture
 
-1. Filename: prefer PascalCase. Maybe have Namespace_ prefix. Ex: Example_HelloWorld.c
-2. Libraries/modules should be small. The smallest size of a library is a single header file. The smallest size of a module is a function.
-3. Prefer test of module, usage of module. Unit tests should help, but not always.
-4. Should have an real-life application come with it.
-5. Everything should have been maintaining, so the place of vcs.
+- Filename: prefer PascalCase. Maybe have Namespace_ prefix. Ex: Example_HelloWorld.c
+- Libraries/modules should be small. The smallest size of a library is a single header file. The smallest size of a module is a function.
+- Prefer test of module, usage of module. Unit tests should help, but not always.
+- Should have an real-life application come with it.
+- Everything should have been maintaining, so the place of VCS.
 
 ## Build system
 
-1. Prefer premake over cmake
-2. But knowing cmake can be help
-3. Base knowleged of gmake/VisualStudio always needed
-4. Some incremental build systems like: ninja, FASTBuild, ... Should only use when needed
+- Prefer premake over cmake
+- But knowing cmake can be help
+- Base knowlege of gmake/VisualStudio always needed
+- Some incremental build systems like: ninja, FASTBuild,... Should only use when needed
  
 ## Notes
-1. Some projects will follow its own style for special reasons.
+- Some projects will follow its own style for special reasons. Ex: vectormath
