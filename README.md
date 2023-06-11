@@ -14,8 +14,11 @@
     - Low level for abstactions
     - Love and passion
     - Debug easily, development focus, better tools
-    - All principles support each others.
-    
+    - All principles support each others
+- Self reliance
+    - "What I cannot create, I cannot Understand" - Richard Feymann
+    - First use it, second attempt to create it with simple implementation, third use it better
+
 ## Languages, Standards, Spirits
 - Use C99 and C++14
 - Follow spririts of C, simple and easy to read
