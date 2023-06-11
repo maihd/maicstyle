@@ -1,6 +1,16 @@
 # C/C++ programming style
 
+## Notes
+
+- I'm still learning and practicing for better as C/C++. Ideas and opions may wrong. 
+- My English is not good, if You find the typos, wrong word and wrong meaning, please help! 
+- Some my projects will follow its own style for special reasons. Ex: vectormath
+- I use other project style guide for thoses projects. It help me learn the others, and new stuffs, why not? 
+- Because I will use Zig and Beef for some future projects, each languages has its own styles, I will follow the style, but the heart of priciple will be same: simple and make the job done!
+
 ## Inventing in Principles
+
+- Make the job done! 
 - Immediate feedback
 - What you seed is what you get: WYSIWYG
 - Simple, open, immediate, low level, debug
@@ -15,12 +25,14 @@
     - Love and passion
     - Debug easily, development focus, better tools
     - All principles support each others
-- Self reliance
+- Self reliance, mindfulness
     - "What I cannot create, I cannot Understand" - Richard Feymann
     - First use it, second attempt to create it with simple implementation, third use it better
+    - Stay focus on the project, and the project only, right now! 
 - Zen create & living! 
 
 ## Languages, Standards, Spirits
+
 - Use C99 and C++14
 - Follow spririts of C, simple and easy to read
 - `#pragma once` is widely supported now. Use it prefer to header guards
@@ -112,6 +124,8 @@
 - But knowing cmake can be help
 - Base knowlege of gmake/VisualStudio always needed
 - Some incremental build systems like: ninja, FASTBuild,... Should only use when needed
- 
-## Notes
-- Some projects will follow its own style for special reasons. Ex: vectormath
+
+## License
+
+Why you need a license for coding style. 
+Copyright MaiHD @ Heart and Head. 
