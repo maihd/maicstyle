@@ -125,6 +125,7 @@
 - But knowing cmake can be help
 - Base knowlege of gmake/VisualStudio always needed
 - Some incremental build systems like: ninja, FASTBuild,... Should only use when needed
+- gmake maybe best fit for many projects, counting cross-platforms
 
 ## License
 
