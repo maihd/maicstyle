@@ -8,3 +8,4 @@ lib.dll.*
 lib.pdb.*
 
 auto_build.exe
+auto_build.pdb
