@@ -51,6 +51,13 @@
 - Enums only: TypeName_MemberName. Ex: JsonError_OutOfMemory, FileAccess_ReadWrite, ...
 - Variables, fields, paramaters: camelCase. Ex: texture.width, texture.height, ...
 
+## Naming cheatsheet
+
+- Init/Deinit: for initialization/deinitialization, no return pointer
+- Create/Destroy: create new memory, init/deinit, and return pointer (object)
+- Alloc/Free: actually request memory from system
+- Acquire/Collect: get memory from a buffer/arena/allocator
+
 ## Types
 
 - Integer type: use specified width integers for data structures, int for parameters, return types, local variables.
