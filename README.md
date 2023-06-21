@@ -45,11 +45,11 @@
 
 ## Naming convention
 
-- Typename: PascalCase. Ex: Texture, Shader, Image, ...
-- Function name: CamelCase, ModuleName_CamelCase. Ex: ArrayPush, Texture_New, ...
-- Enums, constants: ALL_CAPS_CASE. Ex: PI, NULL, PIXEL_RGBA, ...
-- Enums only: TypeName_MemberName. Ex: JsonError_OutOfMemory, FileAccess_ReadWrite, ...
-- Variables, fields, paramaters: camelCase. Ex: texture.width, texture.height, ...
+- Typename: `PascalCase`. Ex: `Texture`, `Shader`, `Image`, ...
+- Function name: `PascalCase`, `ModuleName_FunctionName`. Ex: `ArrayPush`, `Texture_New`, ...
+- Enums, constants: `ALL_CAPS_CASE`. Ex: `PI`, `NULL`, `PIXEL_RGBA`, ...
+- Enums only: `TypeName_MemberName`. Ex: `JsonError_OutOfMemory`, `FileAccess_ReadWrite`, ...
+- Variables, fields, paramaters: `camelCase`. Ex: `texture.width`, `texture.height`, ...
 
 ## Naming cheatsheet
 
@@ -61,19 +61,20 @@
 ## Types
 
 - Integer type: use specified width integers for data structures, int for parameters, return types, local variables.
-    + int8_t/uint8_t instead of char/unsigned char in data structures.
-    + int16_t/uint16_t instead of short/unsigned short in data structures.
-    + int32_t/uint32_t instead of int/unsigned int in data structures.
-    + int64_t/uint64_t instead of long long/unsigned long long (long is 32-bit in Windows) in data structures.
+    + `int8_t`/`uint8_t` instead of `char`/`unsigned char` in data structures.
+    + `int16_t`/`uint16_t` instead of `short`/`unsigned short` in data structures.
+    + `int32_t`/`uint32_t` instead of `int`/`unsigned int` in data structures.
+    + `int64_t`/`uint64_t` instead of `long long`/`unsigned long long` (`long` is 32-bit on Windows) in data structures.
+    + In some cases, there will need `float32_t`/`float64_t` instead of `float`/`double`
     + Specified width integers in ensure the data structures are same size independent on platforms.
     + int and familiar is prefer because this help compiler do optimization.
 
 - float prefer to double, only use double when needed.
-- Generic types: Array(T), Buffer(T), HashTable(T). Avoid T* for multiple values.
-- T* mean pass-by-reference, it mustnot be NULL.
+- Generic types: `Array(T)`, `Buffer(T)`, `HashTable(T)`. Avoid `T*` for multiple values.
+- `T*` mean pass-by-reference, it mustnot be `NULL`.
 - Use value semantic, pass-by-value. For performance reason, make sure use const to prevent evil work on data structures.
 - Typedef struct, enum, union. Prefer explicit aligned data structures.
-    ```c
+    ```C
     typedef struct ALIGNAS(vec3, 16) // ALIGNAS is crossplatform of __declspec(align)
     {
         float x, y, z;
@@ -93,17 +94,18 @@
 - Plain-old data prefer to C++ struct.
 - Avoid use C++ namespace, because C doesnot support. So avoid enum class too.
 - Extended primitive types: vectors and matrices (for graphics and game programming)
-    + vec2, vec3, vec4: single precision floating-point vectors (32-bit per component)
-    + ivec2, ivec3, ivec4: signed integer vectors (32-bit per component)
-    + uvec2, uvec4, uvec4: unsigned interger vectors (32-bit per component)
-    + mat2, mat3, mat4: single precision floating-point matrices (32-bit per component)
-    + imat2, imat3, imat4: signed integer vectors (32-bit per component)
-    + umat2, umat3, umat4: unsigned integer vectors (32-bit per component)
-    + bool2, bool3, bool4: one-byte wide component (1-bit per component)
+    + `vec2`, `vec3`, `vec4`: single precision floating-point vectors (32-bit per component)
+    + `ivec2`, `ivec3`, `ivec4`: signed integer vectors (32-bit per component)
+    + `uvec2`, `uvec4`, `uvec4`: unsigned interger vectors (32-bit per component)
+    + `mat2`, `mat3`, `mat4`: single precision floating-point matrices (32-bit per component)
+    + `imat2`, `imat3`, `imat4`: signed integer vectors (32-bit per component)
+    + `umat2`, `umat3`, `umat4`: unsigned integer vectors (32-bit per component)
+    + `bool2`, `bool3`, `bool4`: one-byte wide component (1-bit per component)
+    + `<std_wided_prim>x<components>_t>` (`uint32x4_t`, `int32x4_t`, `float32x4_t`, ...): SIMD primitive types
 
 ## Scoping
 
-- Single '{' '}' in one line, add newline after it.
+- Single `{` `}` in one line, add newline after it.
 - But all definition of macro when have multiple lines.
 
 ## File layout
@@ -137,5 +139,4 @@
 
 ## License
 
-Why you need a license for coding style. 
-Copyright MaiHD @ Heart and Head. 
+Why you need a license for coding style. Copyright MaiHD @ Heart and Head. 
