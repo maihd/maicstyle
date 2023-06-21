@@ -1,4 +1,4 @@
-# C/C++ programming style
+# MaiHD's C/C++ programming style
 
 ## Notes
 
@@ -8,27 +8,27 @@
 - I use other project style guide for thoses projects. It help me learn the others, and new stuffs, why not? 
 - Because I will use Zig and Beef for some future projects, each languages has its own styles, I will follow the style, but the heart of priciple will be same: simple and make the job done!
 
-## Inventing in Principles
+## Inventing on Principles
 
-- Make the job done! 
+- Get the job done! 
 - Immediate feedback
-- What you seed is what you get: WYSIWYG
+- What you see is what you get: WYSIWYG
 - Simple, open, immediate, low level, debug
     - The new SOLID principles
     - Keep it simple and small, for product
     - Keep it slow and steady, for development product
     - Open mind to the problem
-    - Open data for program to what it need to do
+    - Open data for the program to do what it needs to do
     - Open source for people
-    - Immediate feedback, can be called low latency iterations
-    - Low level for abstactions
+    - Immediate feedback, also know as low-latency iterations
+    - Low level for abstractions
     - Love and passion
-    - Debug easily, development focus, better tools
-    - All principles support each others
-- Self reliance, mindfulness
-    - "What I cannot create, I cannot Understand" - Richard Feymann
-    - First use it, second attempt to create it with simple implementation, third use it better
-    - Stay focus on the project, and the project only, right now! 
+    - Debug easily, focus on development, and use better tools
+    - All principles support each other
+- Self-reliance, mindfulness
+    - "What I cannot create, I cannot understand" - Richard Feynman
+    - First, use it; second, attempt to create it with simple implementation; third, use it better
+    - Stay focused on the project, and the project only, right now! 
 - Zen create & living! 
 
 ## Languages, Standards, Spirits
@@ -41,7 +41,7 @@
 - Prefer code that both compile on C and C++
 - Some features can be support both on C and C++ with extensions, define a keyword with preprocessor
 - Preprocessor is not bad. Duck typing is not bad. Un-tested code is bad. Write the code are needed to be written, test and proof that code work, are the good resolutions for thoses problems. 
-- Prefer clang (and family like zig cc) for toolchains, feel free to use extensions if project is clang-onpy. 
+- Prefer clang (and family like zig cc) for toolchains, feel free to use extensions if project is clang-only. 
 
 ## Naming convention
 
