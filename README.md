@@ -9,7 +9,7 @@
 - Because I will use Zig and Beef for some future projects, each languages has its own styles, I will follow the style, but the heart of priciple will be same: simple and make the job done!
 
 ## Other styles
-This section is a resources to other styles that help me throw time, and it's worth to findout. It's also proved production-ready, inuse by many products, companies. 
+This section is a resources to other styles that help me throw time, and it's worth to findout. It's also proved production-ready, inuse by many products, companies. (You will find its' gamedev-oriented). 
 - [Orthodox C++](https://gist.github.com/bkaradzic/2e39896bc7d8c34e042b)
 - [idSoftware CodingConventions](https://fabiensanglard.net/fd_proxy/doom3/CodeStyleConventions.pdf)
 - [John Carmack's inline code](http://number-none.com/blow/john_carmack_on_inlined_code.html)
