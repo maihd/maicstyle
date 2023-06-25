@@ -8,16 +8,9 @@
 - I use other project style guide for thoses projects. It help me learn the others, and new stuffs, why not? 
 - Because I will use Zig and Beef for some future projects, each languages has its own styles, I will follow the style, but the heart of priciple will be same: simple and make the job done!
 
-## Other styles
-This section is a resources to other styles that help me throw time, and it's worth to findout. It's also proved production-ready, inuse by many products, companies. (You will find its' gamedev-oriented). 
-- [Orthodox C++](https://gist.github.com/bkaradzic/2e39896bc7d8c34e042b)
-- [idSoftware CodingConventions](https://fabiensanglard.net/fd_proxy/doom3/CodeStyleConventions.pdf)
-- [John Carmack's inline code](http://number-none.com/blow/john_carmack_on_inlined_code.html)
-- [Insomniac's Coding Standard](https://gist.github.com/Kerollmops/fcad27cfef9e3552cb75a3d201494ba6)
-
 ## Inventing on Principles
 
-- Get the job done! 
+- Do what matter to get the job done! 
 - Immediate feedback
 - What you see is what you get: WYSIWYG
 - Simple, open, immediate, low level, debug
@@ -147,3 +140,12 @@ This section is a resources to other styles that help me throw time, and it's wo
 ## License
 
 Why you need a license for coding style. Copyright MaiHD @ Heart and Head. 
+
+## Additional Resources
+
+This section is a resources to other styles that help me through time, and it's worth to findout. It's also proved production-ready, inuse by many products, companies. (You will find its' gamedev-oriented). 
+- [Orthodox C++](https://gist.github.com/bkaradzic/2e39896bc7d8c34e042b)
+- [idSoftware CodingConventions](https://fabiensanglard.net/fd_proxy/doom3/CodeStyleConventions.pdf)
+- [John Carmack's inline code](http://number-none.com/blow/john_carmack_on_inlined_code.html)
+- [Insomniac's Coding Standard](https://gist.github.com/Kerollmops/fcad27cfef9e3552cb75a3d201494ba6)
+- [Lucas Sas's Modern C](https://www.youtube.com/watch?v=QpAhX-gsHMs)
