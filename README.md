@@ -149,3 +149,4 @@ This section is a resources to other styles that help me through time, and it's 
 - [John Carmack's inline code](http://number-none.com/blow/john_carmack_on_inlined_code.html)
 - [Insomniac's Coding Standard](https://gist.github.com/Kerollmops/fcad27cfef9e3552cb75a3d201494ba6)
 - [Lucas Sas's Modern C](https://www.youtube.com/watch?v=QpAhX-gsHMs)
+- [Eskil Steenberg's How I program C](https://www.youtube.com/watch?v=443UNeGrFoM&list=PLT6InxK-XQvOpYklsuSAcQ9zmVDClRX6x&index=1)
