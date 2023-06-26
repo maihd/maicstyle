@@ -7,6 +7,7 @@
 - Some my projects will follow its own style for special reasons. Ex: vectormath
 - I use other project style guide for thoses projects. It help me learn the others, and new stuffs, why not? 
 - Because I will use Zig and Beef for some future projects, each languages has its own styles, I will follow the style, but the heart of priciple will be same: simple and make the job done!
+- Base on the important of the section, I will bring it first the most important, last section is the worst important. 
 
 ## Inventing on Principles
 
@@ -29,7 +30,11 @@
     - "What I cannot create, I cannot understand" - Richard Feynman
     - First, use it; second, attempt to create it with simple implementation; third, use it better
     - Stay focused on the project, and the project only, right now! 
-- Zen create & living! 
+- Zen create & living!
+
+## Workflow
+
+Working on it. 
 
 ## Languages, Standards, Spirits
 
