@@ -22,6 +22,7 @@
     - Open data for the program to do what it needs to do
     - Open source for people
     - Immediate feedback, also know as low-latency iterations
+    - Inventing on principles (recursive until there are no principles needed) 
     - Low level for abstractions
     - Love and passion
     - Learn the hard way
