@@ -24,6 +24,7 @@
     - Immediate feedback, also know as low-latency iterations
     - Low level for abstractions
     - Love and passion
+    - Learn the hard way
     - Debug easily, focus on development, and use better tools
     - All principles support each other
 - Self-reliance, mindfulness
