@@ -21,6 +21,7 @@
     - Open mind to the problem
     - Open data for the program to do what it needs to do
     - Open source for people
+    - Open the black box practice
     - Immediate feedback, also know as low-latency iterations
     - Inventing on principles (recursive until there are no principles needed) 
     - Low level for abstractions
@@ -51,7 +52,7 @@ Working on it.
 - Prefer clang (and family like zig cc) for toolchains, feel free to use extensions if project is clang-only. 
 
 ## Naming convention
-
+Please know that naming convention in C/C++ is not forcing in variant type of projects. Mean that naming for readable more important than conventions.
 - Typename: `PascalCase`. Ex: `Texture`, `Shader`, `Image`, ...
 - Function name: `PascalCase`, `ModuleName_FunctionName`. Ex: `ArrayPush`, `Texture_New`, ...
 - Enums, constants: `ALL_CAPS_CASE`. Ex: `PI`, `NULL`, `PIXEL_RGBA`, ...
