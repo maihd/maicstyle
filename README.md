@@ -23,12 +23,13 @@
     - Open source for people
     - Open the black box practice
     - Immediate feedback, also know as low-latency iterations
-    - Inventing on principles (recursive until there are no principles needed) 
+    - Inventing on principles (recursive until there are no principles needed)
+    - Incrementally development
     - Low level for abstractions
     - Love and passion
     - Learn the hard way
     - Debug easily, focus on development, and use better tools
-    - All principles support each other
+    - All principles support each others
 - Self-reliance, mindfulness
     - "What I cannot create, I cannot understand" - Richard Feynman
     - First, use it; second, attempt to create it with simple implementation; third, use it better
