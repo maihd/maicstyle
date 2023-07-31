@@ -2,10 +2,10 @@
 
 ## Notes
 
-- I'm still learning and practicing for better as C/C++. Ideas and opions may wrong.
+- I'm still learning and practicing for better as C/C++. Ideas and opinions may wrong.
 - My English is not good, if You find the typos, wrong word and wrong meaning, please help!
-- Some my projects will follow its own style for special reasons. Ex: vectormath
-- I use other project style guide for thoses projects. It help me learn the others, and new stuffs, why not?
+- Some my projects will follow its own style for special reasons. Ex: vectormath, lite
+- I use other projects style guide for thoses projects. It help me learn the others, and new stuffs, why not?
 - Because I will use Zig and Beef for some future projects, each languages has its own styles, I will follow the style, but the heart of priciple will be same: simple and make the job done!
 - Base on the important of the section, I will bring it first the most important, last section is the worst important.
 
@@ -21,11 +21,15 @@
     - Open mind to the problem
     - Open data for the program to do what it needs to do
     - Open source for people
+    - Open the black box practice
     - Immediate feedback, also know as low-latency iterations
+    - Inventing on principles (recursive until there are no principles needed)
+    - Incrementally development
     - Low level for abstractions
     - Love and passion
+    - Learn the hard way
     - Debug easily, focus on development, and use better tools
-    - All principles support each other
+    - All principles support each others
 - Self-reliance, mindfulness
     - "What I cannot create, I cannot understand" - Richard Feynman
     - First, use it; second, attempt to create it with simple implementation; third, use it better
@@ -49,7 +53,7 @@ Working on it.
 - Prefer clang (and family like zig cc) for toolchains, feel free to use extensions if project is clang-only.
 
 ## Naming convention
-
+Please know that naming convention in C/C++ is not forcing in variant type of projects. Mean that naming for readable more important than conventions.
 - Typename: `PascalCase`. Ex: `Texture`, `Shader`, `Image`, ...
 - Function name: `PascalCase`, `ModuleName_FunctionName`. Ex: `ArrayPush`, `Texture_New`, ...
 - Enums, constants: `ALL_CAPS_CASE`. Ex: `PI`, `NULL`, `PIXEL_RGBA`, ...
