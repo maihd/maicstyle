@@ -2,16 +2,16 @@
 
 ## Notes
 
-- I'm still learning and practicing for better as C/C++. Ideas and opions may wrong. 
-- My English is not good, if You find the typos, wrong word and wrong meaning, please help! 
+- I'm still learning and practicing for better as C/C++. Ideas and opions may wrong.
+- My English is not good, if You find the typos, wrong word and wrong meaning, please help!
 - Some my projects will follow its own style for special reasons. Ex: vectormath
-- I use other project style guide for thoses projects. It help me learn the others, and new stuffs, why not? 
+- I use other project style guide for thoses projects. It help me learn the others, and new stuffs, why not?
 - Because I will use Zig and Beef for some future projects, each languages has its own styles, I will follow the style, but the heart of priciple will be same: simple and make the job done!
-- Base on the important of the section, I will bring it first the most important, last section is the worst important. 
+- Base on the important of the section, I will bring it first the most important, last section is the worst important.
 
 ## Inventing on Principles
 
-- Do what matter to get the job done! 
+- Do what matter to get the job done!
 - Immediate feedback
 - What you see is what you get: WYSIWYG
 - Simple, open, immediate, low level, debug
@@ -29,12 +29,12 @@
 - Self-reliance, mindfulness
     - "What I cannot create, I cannot understand" - Richard Feynman
     - First, use it; second, attempt to create it with simple implementation; third, use it better
-    - Stay focused on the project, and the project only, right now! 
+    - Stay focused on the project, and the project only, right now!
 - Zen create & living!
 
 ## Workflow
 
-Working on it. 
+Working on it.
 
 ## Languages, Standards, Spirits
 
@@ -45,8 +45,8 @@ Working on it.
 - Content file only support ascii. Donot use utf8 file format.
 - Prefer code that both compile on C and C++
 - Some features can be support both on C and C++ with extensions, define a keyword with preprocessor
-- Preprocessor is not bad. Duck typing is not bad. Un-tested code is bad. Write the code are needed to be written, test and proof that code work, are the good resolutions for thoses problems. 
-- Prefer clang (and family like zig cc) for toolchains, feel free to use extensions if project is clang-only. 
+- Preprocessor is not bad. Duck typing is not bad. Un-tested code is bad. Write the code are needed to be written, test and proof that code work, are the good resolutions for thoses problems.
+- Prefer clang (and family like zig cc) for toolchains, feel free to use extensions if project is clang-only.
 
 ## Naming convention
 
@@ -55,8 +55,19 @@ Working on it.
 - Enums, constants: `ALL_CAPS_CASE`. Ex: `PI`, `NULL`, `PIXEL_RGBA`, ...
 - Enums only: `TypeName_MemberName`. Ex: `JsonError_OutOfMemory`, `FileAccess_ReadWrite`, ...
 - Variables, fields, paramaters: `camelCase`. Ex: `texture.width`, `texture.height`, ...
-- Custom keywords: __snake_case. Ex: __enum_type, __default_init, __defer, __typename, __scope. 
-- Reuse keywords instead of define new: constexpr, __forceinline, alignas, alignof, offsetof, container_of, __vectorcall. 
+- Custom keywords: __snake_case. Ex: __enum_type, __default_init, __defer, __typename, __scope.
+- Reuse keywords instead of define new: constexpr, __forceinline, alignas, alignof, offsetof, container_of, __vectorcall.
+
+## Naming convention 2
+This convention is more common in C/C++. So I accept this.
+- Typename: `PascalCase`. Ex: `Texture`, `Shader`, `Image`, ...
+- Module name: `snake_case`. Ex: `vec2`, `mat4`, ...
+- Function name: `snake_case`, `module_name_function_name`. Ex: `array_push`, `texture_new`, ...
+- Enums, constants: `ALL_CAPS_CASE`. Ex: `PI`, `NULL`, `PIXEL_RGBA`, ...
+- Enums only: `TypeName_MemberName`. Ex: `JsonError_OutOfMemory`, `FileAccess_ReadWrite`, ...
+- Variables, fields, paramaters: `snake_case`. Ex: `texture.width`, `texture.height`, ...
+- Custom keywords: __snake_case. Ex: __enum_type, __default_init, __defer, __typename, __scope.
+- Reuse keywords instead of define new: constexpr, __forceinline, alignas, alignof, offsetof, container_of, __vectorcall.
 
 ## Naming cheatsheet
 
@@ -125,7 +136,7 @@ Working on it.
 - Definitions of all types
 - Definitions of all functions
 - An optional end-of-file mark
-- Should end with a newline, some compilers need this (gcc family) 
+- Should end with a newline, some compilers need this (gcc family)
 
 ## Project architecture
 
@@ -146,11 +157,11 @@ Working on it.
 
 ## License
 
-Why you need a license for coding style. Copyright MaiHD @ Heart and Head. 
+Why you need a license for coding style. Copyright MaiHD @ Heart and Head.
 
 ## Additional Resources
 
-This section is a resources to other styles that help me through time, and it's worth to findout. It's also proved production-ready, inuse by many products, companies. (You will find its' gamedev-oriented). 
+This section is a resources to other styles that help me through time, and it's worth to findout. It's also proved production-ready, inuse by many products, companies. (You will find its' gamedev-oriented).
 - [Orthodox C++](https://gist.github.com/bkaradzic/2e39896bc7d8c34e042b)
 - [idSoftware CodingConventions](https://fabiensanglard.net/fd_proxy/doom3/CodeStyleConventions.pdf)
 - [John Carmack's inline code](http://number-none.com/blow/john_carmack_on_inlined_code.html)
