@@ -149,6 +149,7 @@ This convention is more common in C/C++. So I accept this.
 - Prefer test of module, usage of module. Unit tests should help, but not always.
 - Should have an real-life application come with it.
 - Everything should have been maintaining, so the place of VCS.
+- Self-reliance, so less dependencies. Add and use with care. Even standard library (see `examples/free_runtime_1` for more details).
 
 ## Build system
 
