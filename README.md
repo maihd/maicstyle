@@ -74,7 +74,7 @@ This convention is more common in C/C++. So I accept this.
 - Reuse keywords instead of define new: constexpr, __forceinline, alignas, alignof, offsetof, container_of, __vectorcall.
 
 ## Naming cheatsheet
-
+This section need a database, because naming is enormous and must have only one meaning.
 - Init/Deinit: for initialization/deinitialization, no return pointer
 - Create/Destroy: create new memory, init/deinit, and return pointer (object)
 - Alloc/Free: actually request memory from system
@@ -89,9 +89,9 @@ This convention is more common in C/C++. So I accept this.
     + `int64_t`/`uint64_t` instead of `long long`/`unsigned long long` (`long` is 32-bit on Windows) in data structures.
     + In some cases, there will need `float32_t`/`float64_t` instead of `float`/`double`
     + Specified width integers in ensure the data structures are same size independent on platforms.
-    + int and familiar is prefer because this help compiler do optimization.
+    + `int` and familiar is prefer because this help compiler do optimization.
 
-- float prefer to double, only use double when needed.
+- `float` prefer to `double`, only use `double` when needed.
 - Generic types: `Array(T)`, `Buffer(T)`, `HashTable(T)`. Avoid `T*` for multiple values.
 - `T*` mean pass-by-reference, it mustnot be `NULL`.
 - Use value semantic, pass-by-value. For performance reason, make sure use const to prevent evil work on data structures.
@@ -113,6 +113,7 @@ This convention is more common in C/C++. So I accept this.
         uint64_t    onUnix;
     } Handle;
     ```
+
 - Plain-old data prefer to C++ struct.
 - Avoid use C++ namespace, because C doesnot support. So avoid enum class too.
 - Extended primitive types: vectors and matrices (for graphics and game programming)
