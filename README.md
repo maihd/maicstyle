@@ -14,7 +14,7 @@
 - Do what matter to get the job done!
 - Immediate feedback
 - What you see is what you get: WYSIWYG
-- Simple, open, immediate, low level, debug
+- Simple, open, immediate, low level, debug/discipline
     - The new SOLID principles
     - Keep it simple and small, for product
     - Keep it slow and steady, for development product
@@ -29,6 +29,7 @@
     - Love and passion
     - Learn the hard way
     - Debug easily, focus on development, and use better tools
+    - Discipline, donot break the rules of the project (each project have each own rules)
     - All principles support each others
 - Self-reliance, mindfulness
     - "What I cannot create, I cannot understand" - Richard Feynman
