@@ -34,7 +34,7 @@
     - "What I cannot create, I cannot understand" - Richard Feynman
     - First, use it; second, attempt to create it with simple implementation; third, use it better
     - Stay focused on the project, and the project only, right now!
-- Zen create & living!
+- Zen creating & living!
 
 ## Workflow
 
@@ -133,15 +133,26 @@ This section need a database, because naming is enormous and must have only one 
 
 ## File layout
 
-- Optional meta information, grouping by a block of comments
-- Pragma, header guards, compiler/linker options
-- Include all needed dependencies
-- Declaration of all types
-- Declaration of all functions/macros. But donot declare `main`.
-- Definitions of all types
-- Definitions of all functions
-- An optional end-of-file mark
-- Should end with a newline, some compilers need this (gcc family)
+- File Header (beginning of the file, not to confusing with .h files)
+    - Optional meta information, grouping by a block of coments
+    - Pragma, header guards, compiler/linker options
+    - Include all needed dependencies
+    - Declaration of all types
+    - Declaration of all functions/macros. But donot declare `main`.
+
+- File Body
+    - Definitions of all types
+    - Definitions of all functions
+
+- File Footer
+    - An optional end-of-file mark. Ex: `//! EOF`
+    - Should end with a newline, some compilers need this (gcc family)
+
+- Grouping
+    - Functions and types declaration should be grouping
+    - Functions and types need to align by columm, easy to find return-type, function name
+    - Seperate functions, types declaration group with 1 empty line
+    - Separate functions, types define with 2 empty lines
 
 ## Project architecture
 
