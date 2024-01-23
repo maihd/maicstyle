@@ -60,8 +60,8 @@ Please know that naming convention in C/C++ is not forcing in variant type of pr
 - Enums, constants: `ALL_CAPS_CASE`. Ex: `PI`, `NULL`, `PIXEL_RGBA`, ...
 - Enums only: `TypeName_MemberName`. Ex: `JsonError_OutOfMemory`, `FileAccess_ReadWrite`, ...
 - Variables, fields, paramaters: `camelCase`. Ex: `texture.width`, `texture.height`, ...
-- Custom keywords: __snake_case. Ex: __enum_type, __default_init, __defer, __typename, __scope.
-- Reuse keywords instead of define new: constexpr, __forceinline, alignas, alignof, offsetof, container_of, __vectorcall.
+- Custom keywords: `__snake_case`. Ex: `__enum_type`, `__default_init`, `__defer`, `__typename`, `__scope`, ...
+- Reuse keywords instead of define new: `constexpr`, `__forceinline`, `alignas`, `alignof`, `offsetof`, `container_of`, `__vectorcall`, ...
 
 ## Naming convention 2
 This convention is more common in C/C++. So I accept this.
@@ -71,8 +71,8 @@ This convention is more common in C/C++. So I accept this.
 - Enums, constants: `ALL_CAPS_CASE`. Ex: `PI`, `NULL`, `PIXEL_RGBA`, ...
 - Enums only: `TypeName_MemberName`. Ex: `JsonError_OutOfMemory`, `FileAccess_ReadWrite`, ...
 - Variables, fields, paramaters: `snake_case`. Ex: `texture.width`, `texture.height`, ...
-- Custom keywords: __snake_case. Ex: __enum_type, __default_init, __defer, __typename, __scope.
-- Reuse keywords instead of define new: constexpr, __forceinline, alignas, alignof, offsetof, container_of, __vectorcall.
+- Custom keywords: `__snake_case`. Ex: `__enum_type`, `__default_init`, `__defer`, `__typename`, `__scope`, ...
+- Reuse keywords instead of define new: `constexpr`, `__forceinline`, `alignas`, `alignof`, `offsetof`, `container_of`, `__vectorcall`, ...
 
 ## Naming cheatsheet
 This section need a database, because naming is enormous and must have only one meaning.
@@ -157,7 +157,7 @@ This section need a database, because naming is enormous and must have only one 
 
 ## Project architecture
 
-- Filename: prefer PascalCase. Maybe have Namespace_ prefix. Ex: Example_HelloWorld.c
+- Filename: prefer PascalCase. Maybe have `Namespace_` prefix. Ex: `Example_HelloWorld.c`
 - Libraries/modules should be small. The smallest size of a library is a single header file. The smallest size of a module is a function.
 - Prefer test of module, usage of module. Unit tests should help, but not always.
 - Should have an real-life application come with it.
@@ -181,7 +181,7 @@ Why you need a license for coding style. Copyright MaiHD @ Heart and Head.
 
 This section is a resources to other styles that help me through time, and it's worth to findout. It's also proved production-ready, inuse by many products, companies. (You will find its' gamedev-oriented).
 - [Orthodox C++](https://gist.github.com/bkaradzic/2e39896bc7d8c34e042b)
-- [idSoftware CodingConventions](https://fabiensanglard.net/fd_proxy/doom3/CodeStyleConventions.pdf)
+- [idSoftware CodingConventions](https://fabiensanglard.net/fd_proxy/doom3/CodeStyleConventions.pdf) [Mirror](/docs/idCodeStyleConventions.pdf)
 - [John Carmack's inline code](http://number-none.com/blow/john_carmack_on_inlined_code.html)
 - [Insomniac's Coding Standard](https://gist.github.com/Kerollmops/fcad27cfef9e3552cb75a3d201494ba6)
 - [Lucas Sas's Modern C](https://www.youtube.com/watch?v=QpAhX-gsHMs)
