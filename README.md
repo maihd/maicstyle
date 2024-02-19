@@ -90,7 +90,7 @@ This section need a database, because naming is enormous and must have only one 
     + `int64_t`/`uint64_t` instead of `long long`/`unsigned long long` (`long` is 32-bit on Windows) in data structures.
     + In some cases, there will need `float32_t`/`float64_t` instead of `float`/`double`
     + Specified width integers in ensure the data structures are same size independent on platforms.
-    + `int` and familiar is prefer because this help compiler do optimization.
+    + `int` and familiar is prefer because this help compiler do optimization. (rarely use, only helpful for uncommon platforms)
 
 - `float` prefer to `double`, only use `double` when needed.
 - Generic types: `Array(T)`, `Buffer(T)`, `HashTable(T)`. Avoid `T*` for multiple values.
@@ -172,6 +172,14 @@ This section need a database, because naming is enormous and must have only one 
 - Some incremental build systems like: ninja, FASTBuild,... Should only use when needed
 - gmake maybe best fit for many projects, counting cross-platforms
 - Sometime build.bat is all I need
+
+## Tooling (helpful and need to learn)
+
+- Clang and LLVM, and families
+- Clang Static Analyzer
+- Clang Format
+- Clang Tidy
+- Visual Studio and helpers (not only compiler and code editor part)
 
 ## License
 
