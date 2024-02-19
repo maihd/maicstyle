@@ -79,7 +79,7 @@ This section need a database, because naming is enormous and must have only one 
 - Init/Deinit: for initialization/deinitialization, no return pointer
 - Create/Destroy: create new memory, init/deinit, and return pointer (object)
 - Alloc/Free: actually request memory from system
-- Acquire/Collect: get memory from a buffer/arena/allocator
+- Acquire/Release: get memory (also resources) from a buffer/arena/allocator (not return to system when call release)
 
 ## Types
 
@@ -93,7 +93,7 @@ This section need a database, because naming is enormous and must have only one 
     + `int` and familiar is prefer because this help compiler do optimization. (rarely use, only helpful for uncommon platforms)
 
 - `float` prefer to `double`, only use `double` when needed.
-- Generic types: `Array(T)`, `Buffer(T)`, `HashTable(T)`. Avoid `T*` for multiple values.
+- (C only) Generic types: `Array(T)`, `Buffer(T)`, `HashTable(T)`. Avoid `T*` for multiple values. Should add prefix `T`.
 - `T*` mean pass-by-reference, it mustnot be `NULL`.
 - Use value semantic, pass-by-value. For performance reason, make sure use const to prevent evil work on data structures.
 - Typedef struct, enum, union. Prefer explicit aligned data structures.
@@ -179,6 +179,7 @@ This section need a database, because naming is enormous and must have only one 
 - Clang Static Analyzer
 - Clang Format
 - Clang Tidy
+- VSCode clangd (LSP for coding C/C++ with VSCode, better than VSCode Intellisense, also support swizzle syntax for vector primitives)
 - Visual Studio and helpers (not only compiler and code editor part)
 
 ## License
