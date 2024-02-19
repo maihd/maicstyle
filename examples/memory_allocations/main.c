@@ -63,8 +63,20 @@ void* Arena_Acquire(Arena* arena, int32_t size, int32_t alignment)
 }
 
 // No free allocations in arena
-// @todo: Add stack-based memory allocations, support free allocations in tail position
-//void Arena_Free(Arena arena);
+// @todo: Add stack-based memory allocations, support free allocations in tail position (not complete)
+void Arena_Release(Arena* arena, void* ptr, int32_t size, int32_t alignment)
+{
+    // @note: wrong code, because we donot dealign address (but work when Arena_Acquire do no alignment)
+    const uintptr_t address = (uintptr_t)ptr;
+    if (address + size == (uintptr_t)((uint8_t*)arena->page + arena->pageHead))
+    {
+        arena->pageHead = (int32_t)(address - (uintptr_t)arena->page);
+        return;
+    }
+
+    // Programmer error, because design of Arena should free all memory usage of its in once
+    assert(0 && "Cannot deallocation, please donot call this function at random places. For temporary allocation, use ArenaTemp instead.");
+}
 
 // Extend/utils functions
 const char* Arena_FormatString(Arena* arena, const char* format, ...)
@@ -109,3 +121,4 @@ int main()
     return 0;
 }
 
+//! EOF
