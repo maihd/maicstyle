@@ -1,18 +1,20 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <isocline.h>
 
 int main()
 {
-    printf("Lisp v0.1\n");
+    printf("Lisp v0.0.3\n");
     printf("Press Ctrl+C to exit!\n");
 
     while (1)
     {
-        printf("lisp> ");
+        char* input = ic_readline("lisp");
+        ic_history_add(input);
 
-        char input[1024];
-        fgets(input, sizeof(input), stdin);
+        printf("No you're a %s\n", input);
 
-        printf("No you're %s\n", input);
+        free(input);
     }
 
     return 0;
