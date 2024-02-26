@@ -196,6 +196,7 @@ This section need a database, because naming is enormous and must have only one 
 - Clang Static Analyzer
 - Clang Format
 - Clang Tidy
+- Clang AST dump (for bindgen and preprocessing)
 - VSCode clangd (LSP for coding C/C++ with VSCode, better than VSCode Intellisense, also support swizzle syntax for vector primitives)
 - Visual Studio and helpers (not only compiler and code editor part)
 
