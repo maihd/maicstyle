@@ -19,8 +19,31 @@ Monster: # Name of the Actor/Prefab/Entity Class
 ```
 
 ```C
-const SystemFilter* filter = ecs_new_filter_by_prefab("Monster");
 
+// Autogen.c
+
+static SystemFilter* filter;
+
+// @init
+void register_scripts(void)
+{
+    assert(filter == nullptr);
+
+    filter = ecs_new_filter_by_prefab("Monster");
+    register_system_update_by_filter(filter, OnSystemUpdateByFilter);
+}
+
+// @deinit
+void unregister_scripts(void)
+{
+    assert(filter != nullptr);
+
+    unregister_system_update_by_filter(filter, OnSystemUpdateByFilter);
+    filter = nullptr; // nullptr is predefined, equal to NULL, but more meaningful
+}
+
+// @script
+// @system-update
 void OnSystemUpdateByFilter(float dt, EntityId monster, EntityId weapon)
 {
     if (is_has_weapon(monster)) // is_has_weapon is Programmer Code
@@ -33,6 +56,8 @@ void OnSystemUpdateByFilter(float dt, EntityId monster, EntityId weapon)
         set_movement_by_percent(monster, 1.0);
     }
 }
+
+// Commands.c
 
 // @command Set<MovementSpeed, Percent>
 // Set is generic command
