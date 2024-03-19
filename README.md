@@ -171,6 +171,12 @@ This section need a database, because naming is enormous and must have only one 
     - Functions and types need to align by columm, easy to find return-type, function name
     - Seperate functions, types declaration group with 1 empty line
     - Separate functions, types define with 2 empty lines
+ 
+## Function
+- Grouping chunk by work, what to do
+- Prefer clear, readable code
+- Prefer pure function if available
+- Avoid declare one line variables for pointer type (missing *)
 
 ## Project architecture <a name="project-architecture" />
 
