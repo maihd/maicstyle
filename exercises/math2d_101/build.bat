@@ -1,5 +1,7 @@
 @echo off
 
-set SRC=src/main.c src/tigr.c
+call vars.bat
 
-clang -o a.exe %SRC%
+set SRC=src/main.c src/HotDylib.c
+
+%CC% -o a.exe %SRC% tigr.dll
