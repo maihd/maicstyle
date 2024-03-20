@@ -1,7 +1,12 @@
+// This example use 2 extensions (both not available on MSVC):
+//  - Braced-group within expression
+//  - typeof
+
 #include <stdio.h>
 #include <stddef.h>
 #include <stdint.h>
 
+// Famous macros that commonly use in Linux kernel
 #define container_of(ptr, Type, member)                     \
     ({                                                      \
         const typeof(((Type*)0)->member)* __mptr = ptr;     \
