@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "tigr.h"
 #include "HotDylib.h"
+#include "HotDylibEx.h"
 
 #include "common.h"
 
@@ -16,8 +18,19 @@ int main()
     UpdateFn* update_fn = nullptr;
     DrawFn* draw_fn = nullptr;
 
+    HotDylibFileTime dir = { 0, "src/lib.c" };
+    HotDylibWatchFiles(&dir, 1);
+
     while (!tigrClosed(window))
     {
+        if (HotDylibWatchFiles(&dir, 1))
+        {
+            printf("Source changed, rebuild lib with build_lib.bat\n");
+            system("build_lib.bat");
+            HotDylibWatchFiles(&dir, 1);
+            continue;
+        }
+
         HotDylibState state = HotDylibUpdate(lib);
         switch (state)
         {

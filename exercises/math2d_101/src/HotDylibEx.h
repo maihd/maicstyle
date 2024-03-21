@@ -18,7 +18,7 @@ typedef struct
  * @note: if change the directory after received a changed event
  *        ensure call this again to update time to ignore change
  *
- * @example: 
+ * @example:
  *        HotDylibFileTime dir = { 0, "<dirpath>" };
  *        HotDylibWatchFiles(&dir, 1); // Initialize
  *        ...
