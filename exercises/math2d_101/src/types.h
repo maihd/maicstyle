@@ -9,6 +9,12 @@ typedef i32             i32x2 __attribute__((ext_vector_type(2))); // Vector2 of
 typedef u32             u32x2 __attribute__((ext_vector_type(2))); // Vector2 of u32
 typedef f32             f32x2 __attribute__((ext_vector_type(2))); // Vector2 of f32
 
+typedef struct AABB
+{
+    f32x2 min;
+    f32x2 max;
+} AABB;
+
 //! EOF
 
 

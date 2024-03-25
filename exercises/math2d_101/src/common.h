@@ -6,6 +6,14 @@
 #define nullptr ((void*)0)
 #endif
 
+#ifndef __cplusplus
+#if (__STDC_VERSION__ >= 201112L) && !defined(__static_assert_defined)
+#define static_assert _Static_assert
+#else
+#define static_assert(cond, msg) const char _Static_assert ## __LINE__[(cond) && (msg)];
+#endif
+#endif
+
 typedef void UpdateFn(Tigr* window);
 typedef void DrawFn(Tigr* window);
 
