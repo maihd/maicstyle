@@ -34,6 +34,7 @@ typedef struct ListNode
 /// container_of
 /// The famous Linux kernel's macro
 /// This macro is helpful when cast Member to Super data structure
+/// Details explain: http://www.kroah.com/log/linux/container_of.html
 #define container_of(ptr, TSuper, member) ((TSuper*)((uint8_t*)(ptr) - offsetof(TSuper, member)))
 
 
@@ -50,6 +51,31 @@ typedef struct ListNode
     , node_entry((prev_node)->next, Type)) \
     : (Type*)memset(acquire_memory(arena, sizeof(Type)), 0, sizeof(Type))\
     )
+
+
+/// list_for_each
+/// Simple pattern for loop through each node of linked list
+#define list_for_each(pos, node) for (ListNode* (pos) = (node); pos; (pos) = (pos)->next)
+
+
+// No node delete algorithms are welcome in single linked list
+// void list_node_del(ListNode* list, ListNode* entry)
+// {
+//  	ListNode* p;
+
+//     if (entry == list)
+//     {
+//         list->next = LIST_NULL_NODE;
+//         return;
+//     }
+
+// 	for (p = list; p; p = p->next)
+//     {
+// 		if (p->next != entry) continue;
+// 		p->next = entry->next;
+// 		return;
+// 	}
+// }
 
 
 /// acquire_memory
@@ -72,6 +98,8 @@ void* acquire_memory(Arena* arena, size_t size)
 typedef struct Test
 {
     ListNode    node;   // Must be value (not pointer or crash)
+                        // And place this node in the first member will result zero-cost abstraction 
+
     int32_t     value;  // Simple value
 } Test;
 
@@ -96,7 +124,7 @@ int main()
     a->value = 1;
     b->value = 2;
 
-    for (ListNode* p = &a->node; p != NULL; p = p->next)
+    list_for_each (p, &a->node)
     {
         Test* v = node_entry(p, Test);
         printf("Value of %p = %d\n", p, v->value); 
