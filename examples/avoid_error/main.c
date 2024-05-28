@@ -3,6 +3,7 @@
 ///     - Ryan Fleury, https://www.rfleury.com/p/the-easiest-way-to-handle-errors
 /// -------------------------------------------------------------------------------
 
+#include <stddef.h>
 #include <stdio.h>
 #include <stdint.h>
 
@@ -51,16 +52,28 @@ Node* search_for_interest_chain(Node* root)
 /// Solution 2: Make Zero Values Valid (Zero-Is-Initialization)
 
 
-typedef struct StrView
+// Wrong example, StrView should be use as value type
+// typedef struct StrView
+// {
+//     const char* data;   // 0 mean empty
+//     size_t      size;   // 0 mean empty, too, but we should check this member only
+// } StrView;
+
+
+// StrView empty_str = {0}; // Easy init
+// StrView empty_str_w_data = {""}; // Also easy init
+// strview("") is prefer
+
+typedef struct Str
 {
-    const char* data;   // 0 mean empty
-    size_t      size;   // 0 mean empty, too, but we should check this member only
-} StrView;
+    const char* data;
+    size_t      size;
+    size_t      capacity;
+    uint32_t    flags;
+} Str;
 
-
-StrView empty_str = {0}; // Easy init
-StrView empty_str_w_data = {""}; // Also easy init
-
+Str empty_str = {0}; // Easy init
+Str empty_str_w_data = {""};
 
 /// Solution 3: If You’re Going To Fail, Fail Early
 ///     Let the app/game crash, debug break occur
