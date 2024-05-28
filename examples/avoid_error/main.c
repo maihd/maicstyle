@@ -64,6 +64,7 @@ Node* search_for_interest_chain(Node* root)
 // StrView empty_str_w_data = {""}; // Also easy init
 // strview("") is prefer
 
+
 typedef struct Str
 {
     const char* data;
@@ -72,8 +73,10 @@ typedef struct Str
     uint32_t    flags;
 } Str;
 
+
 Str empty_str = {0}; // Easy init
 Str empty_str_w_data = {""};
+
 
 /// Solution 3: If You’re Going To Fail, Fail Early
 ///     Let the app/game crash, debug break occur
