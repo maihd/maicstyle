@@ -8,6 +8,7 @@
 - I use other projects style guide for thoses projects. It help me learn the others, and new stuffs, why not?
 - Because I will use Zig and Beef for some future projects, each languages has its own styles, I will follow the style, but the heart of priciple will be same: Simply make the job done!
 - Based on the important of the section, I will bring it first the most important, last section is the least important.
+- Note: this project can be consider as a R&D for Mai personal work, you can find some ideas in `docs` folder.
 
 # Table of Contents
 
