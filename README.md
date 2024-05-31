@@ -70,6 +70,7 @@ Working on it.
 - Some features can be support both on C and C++ with extensions, define a keyword with preprocessor
 - Preprocessor is not bad. Duck typing is not bad. Un-tested code is bad. Write the code are needed to be written, test and proof that code work, are the good resolutions for thoses problems.
 - Prefer clang (and family like zig cc) for toolchains, feel free to use extensions if project is clang-only.
+- Deep dive in [ProgLang.md](/ProgLang.md)
 
 ## Naming convention <a name="naming-convention" />
 Please know that naming convention in C/C++ is not forcing in variant type of projects. Mean that naming for readable more important than conventions.

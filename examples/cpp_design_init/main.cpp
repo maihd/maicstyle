@@ -5,11 +5,13 @@
 
 #include <stdio.h>
 
+
 struct Vec2
 {
     float x;
     float y;
 };
+
 
 int main()
 {
