@@ -44,8 +44,8 @@ vec2 vec2_new(float s)
         , default: vec2_new) args
 
 // pass copy of args as the first argument
-// add void value, only its type matters
-// add dummy `~` argument to ensure that `...` in `foo_` catches something
+// add vec2 value, only its type matters
+// add dummy `~` argument to ensure that `...` in `vec2_` catches something
 #define vec2(...) vec2_((__VA_ARGS__), __VA_ARGS__, (vec2){0}, ~)
 #endif
 
