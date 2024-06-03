@@ -205,6 +205,10 @@ This section need a database, because naming is enormous and must have only one 
 - Clang Format
 - Clang Tidy
 - Clang AST dump (for bindgen and preprocessing)
+- Undefined behavior sanitizer (all compilers)
+- Memory sanitizer (all compilers)
+- Tracy Profiler
+- Platform's native profiler
 - VSCode clangd (LSP for coding C/C++ with VSCode, better than VSCode Intellisense, also support swizzle syntax for vector primitives)
     - Note (11/03/2024): clangd is extremely using too much resources (RAM, CPU) when project have large header files (commonly with single header file libraries)
 - Visual Studio and helpers (not only compiler and code editor part)
