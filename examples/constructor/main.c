@@ -13,6 +13,11 @@
 #include <stdint.h>
 #include <string.h>
 
+typedef struct no_arg_t
+{
+    int _;
+} no_arg_t;
+
 
 typedef struct vec2
 {
@@ -119,7 +124,9 @@ vec3 vec3_new(void)
 
 
 //
-// A simple implementation of Str constructor, that worked on all mainstream compilers
+// A simple implementation of Str constructor, that worked on all mainstream compilers.
+// In some favor, this is a good features. But I found this will complicating the code.
+// The interface also need to many hidden implementations under of its.
 //
 
 
@@ -138,16 +145,43 @@ Str str(const char (&data)[N])
 }
 
 
+struct CStrWrapper
+{
+    const char* data;
+
+    CStrWrapper(const char* data) : data(data) {}  
+};
+
+
+Str str(CStrWrapper cstr)
+{
+    return Str { strlen(cstr.data), cstr.data };
+}
+
+
 Str str(const char* data, size_t len)
 {
     return Str { len, data };
 }
 #else
 
-#define __str_ctor(args, x, y, ...) ((Str){ .len = y, .data = x })
-#define str(...)                    __str_ctor((__VA_ARGS__), ##__VA_ARGS__, sizeof(__VA_ARGS__) - 1, ~)
+#define __str_ctor_len(x, y)    \
+    _Generic((y)                \
+        , no_arg_t: strlen(x)   \
+        , size_t: y             \
+        , default: 0            \
+    )
+
+#define __str_ctor(args, x, y, ...)                                                 \
+    _Generic(&(x)                                                                   \
+        , char(*)[sizeof(x)]: ((Str){ .len =        sizeof(x) - 1, .data = x })     \
+        , default:            ((Str){ .len = __str_ctor_len(x, y), .data = x })     \
+    )
+
+#define str(...) __str_ctor((__VA_ARGS__), ##__VA_ARGS__, (no_arg_t){0}, ~)
 
 #endif
+
 
 int main()
 {
@@ -172,8 +206,13 @@ int main()
     Str s = str("");
     Str s1 = str("1", 1);
 
+    const char* char_ptr = "123";
+    Str s2 = str(char_ptr); // clang-tidy will complain this use sizeof(char_ptr), which is false warning
+
     printf("s = { .len = %zu, .data = \"%s\" }\n", s.len, s.data);
     printf("s1 = { .len = %zu, .data = \"%s\" }\n", s1.len, s1.data);
+    printf("s2 = { .len = %zu, .data = \"%s\" }\n", s2.len, s2.data);
+
 
     return 0;
 }
