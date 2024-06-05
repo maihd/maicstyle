@@ -52,14 +52,14 @@ vec2 vec2_new(void)
 #define vec2_(args, x, y, ...)      \
     _Generic((x)                    \
         , vec2: vec2_new0           \
-        , default:  _Generic((y)    \
+        , default: _Generic((y)     \
             , vec2: vec2_new1       \
             , default: vec2_new)) args
 
 // pass copy of args as the first argument
 // add vec2 value, only its type matters
 // add dummy `~` argument to ensure that `...` in `vec2_` catches something
-#define vec2(...) vec2_((__VA_ARGS__), __VA_ARGS__, (vec2){0}, (vec2){0}, ~)
+#define vec2(...) vec2_((__VA_ARGS__), ##__VA_ARGS__, (vec2){0}, (vec2){0}, ~)
 #endif
 
 
@@ -104,14 +104,14 @@ vec3 vec3_new(void)
 #define vec3_(args, x, y, ...)      \
     _Generic((x)                    \
         , vec3: vec3_new0           \
-        , default:  _Generic((y)    \
+        , default: _Generic((y)     \
             , vec3: vec3_new1       \
             , default: vec3_new)) args
 
 // pass copy of args as the first argument
 // add vec3 value, only its type matters
 // add dummy `~` argument to ensure that `...` in `vec3_` catches something
-#define vec3(...) vec3_((__VA_ARGS__), __VA_ARGS__, (vec3){0}, (vec3){0}, ~)
+#define vec3(...) vec3_((__VA_ARGS__), ##__VA_ARGS__, (vec3){0}, (vec3){0}, ~)
 #endif
 
 
