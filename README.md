@@ -3,18 +3,19 @@
 ## Notes
 
 - I'm still learning and practicing for better as C/C++. Ideas and opinions may wrong.
-- My English is not good, if You find the typos, wrong words and wrong meanings, please help!
-- Some my projects will follow its own style for special reasons. Ex: vectormath
+- Mai English is not good, if You find the typos, wrong words and wrong meanings, please help!
+- Some Mai projects will follow its own style (but not too different from this style) for special reasons. Ex: vectormath
 - I use other projects style guide for thoses projects. It help me learn the others, and new stuffs, why not?
 - Because I will use Zig and Beef for some future projects, each languages has its own styles, I will follow the style, but the heart of priciple will be same: Simply make the job done!
 - Based on the important of the section, I will bring it first the most important, last section is the least important.
 - Note: this project can be consider as a R&D for Mai personal work, you can find some ideas in `docs` folder.
 
+
 # Table of Contents
 
 1. [Inventing on Principles](#inventing-on-principles)
 2. [Workflow](#workflow)
-3. [Languages, Standards, Spirits](#languages-standards-spirits)
+3. [Programming Languages, Standards, Spirits](#proglang-standards-spirits)
 4. [Naming convention](#naming-convention)
 5. [Naming convention 2](#naming-convention-2)
 6. [Naming cheatsheet](#naming-cheatsheet)
@@ -26,6 +27,7 @@
 12. [Tooling](#tooling)
 13. [License](#license)
 14. [Additional Resources](#additional-resources)
+
 
 ## Inventing on Principles <a name="inventing-on-principles" />
 
@@ -55,22 +57,26 @@
     - Stay focused on the project, and the project only, right now!
 - Zen creating & living!
 
+
 ## Workflow <a name="workflow" />
 
 Working on it.
 
-## Languages, Standards, Spirits <a name="languages-standards-spirits" />
 
-- Use C99 and C++14
-- Follow spririts of C, simple and easy to read
-- `#pragma once` is widely supported now. Use it prefer to header guards
-- Use unix encoding
-- Content file only support ascii. Donot use utf8 file format.
+## Programming Languages, Standards, Spirits <a name="proglang-standards-spirits" />
+
+- Use C99 and C++11.
+    - Update 5/6/2024: C11 (C17 just a fix bugs version of C11) and C++17 widely support now (MSCV, Clang, GCC). But without appreciate reasons, you should avoid thoses features.
+- Follow spririts of C, simple and easy to read.
+- `#pragma once` is widely supported now. Use it prefer to header guards.
+- Use unix encoding.
+- Content file only support ASCII. Donot use utf8 file format.
 - Prefer code that both compile on C and C++
-- Some features can be support both on C and C++ with extensions, define a keyword with preprocessor
+- Some features can be support both on C and C++ with extensions, define a keyword with preprocessor.
 - Preprocessor is not bad. Duck typing is not bad. Un-tested code is bad. Write the code are needed to be written, test and proof that code work, are the good resolutions for thoses problems.
 - Prefer clang (and family like zig cc) for toolchains, feel free to use extensions if project is clang-only.
 - Deep dive in [ProgLang.md](/ProgLang.md)
+
 
 ## Naming convention <a name="naming-convention" />
 Please know that naming convention in C/C++ is not forcing in variant type of projects. Mean that naming for readable more important than conventions.
@@ -81,6 +87,7 @@ Please know that naming convention in C/C++ is not forcing in variant type of pr
 - Variables, fields, paramaters: `camelCase`. Ex: `texture.width`, `texture.height`, ...
 - Custom keywords: `__snake_case`. Ex: `__enum_type`, `__default_init`, `__defer`, `__typename`, `__scope`, ...
 - Reuse keywords instead of define new: `constexpr`, `__forceinline`, `alignas`, `alignof`, `offsetof`, `container_of`, `__vectorcall`, ...
+
 
 ## Naming convention 2 <a name="naming-convention-2" />
 This convention is more common in C/C++. So I accept this.
@@ -93,12 +100,14 @@ This convention is more common in C/C++. So I accept this.
 - Custom keywords: `__snake_case`. Ex: `__enum_type`, `__default_init`, `__defer`, `__typename`, `__scope`, ...
 - Reuse keywords instead of define new: `constexpr`, `__forceinline`, `alignas`, `alignof`, `offsetof`, `container_of`, `__vectorcall`, ...
 
+
 ## Naming cheatsheet <a name ="naming-cheatsheet" />
 This section need a database, because naming is enormous and must have only one meaning.
 - Init/Deinit: for initialization/deinitialization, no return pointer
 - Create/Destroy: create new memory, init/deinit, and return pointer (object)
 - Alloc/Free: actually request memory from system
 - Acquire/Release: get memory (also resources) from a buffer/arena/allocator (not return to system when call release)
+
 
 ## Types <a name="types" />
 
@@ -144,12 +153,14 @@ This section need a database, because naming is enormous and must have only one 
     + `imat2`, `imat3`, `imat4`: signed integer vectors (32-bit per component)
     + `umat2`, `umat3`, `umat4`: unsigned integer vectors (32-bit per component)
     + `bool2`, `bool3`, `bool4`: one-byte wide component (1-bit per component)
-    + `<std_wided_prim>x<components>_t>` (`uint32x4_t`, `int32x4_t`, `float32x4_t`, ...): SIMD primitive types
+    + `<std_wided_prim>x<components>_t` (`uint32x4_t`, `int32x4_t`, `float32x4_t`, ...): SIMD primitive types
+
 
 ## Scoping <a name="scoping" />
 
 - Single `{` `}` in one line, add newline after it.
 - But all definition of macro when have multiple lines.
+
 
 ## File layout <a name="file-layout" />
 
@@ -173,12 +184,15 @@ This section need a database, because naming is enormous and must have only one 
     - Functions and types need to align by columm, easy to find return-type, function name
     - Seperate functions, types declaration group with 1 empty line
     - Separate functions, types define with 2 empty lines
+
  
 ## Function
 - Grouping chunk by work, what to do
 - Prefer clear, readable code
 - Prefer pure function if available
 - Avoid declare one line variables for pointer type (missing *)
+- Can use 2 newlines to seperating big chunk of code
+
 
 ## Project architecture <a name="project-architecture" />
 
@@ -187,7 +201,8 @@ This section need a database, because naming is enormous and must have only one 
 - Prefer test of module, usage of module. Unit tests should help, but not always.
 - Should have an real-life application come with it.
 - Everything should have been maintaining, so the place of VCS.
-- Self-reliance, so less dependencies. Add and use with care. Even standard library (see `examples/free_runtime_1` for more details).
+- Self-reliance, so less dependencies. Add and use with care. Even standard library (see [`examples/free_runtime_1`](/examples/free_runtime_1/) for more details).
+
 
 ## Build system <a name="build-system" />
 
@@ -198,6 +213,7 @@ This section need a database, because naming is enormous and must have only one 
 - gmake maybe best fit for many projects, counting cross-platforms
 - Sometime build.bat is all I need
 
+
 ## Tooling (helpful and need to learn) <a name="tooling" />
 
 - Clang and LLVM, and families
@@ -207,15 +223,18 @@ This section need a database, because naming is enormous and must have only one 
 - Clang AST dump (for bindgen and preprocessing)
 - Undefined behavior sanitizer (all compilers)
 - Memory sanitizer (all compilers)
+- Thread sanitizer?
 - Tracy Profiler
 - Platform's native profiler
 - VSCode clangd (LSP for coding C/C++ with VSCode, better than VSCode Intellisense, also support swizzle syntax for vector primitives)
     - Note (11/03/2024): clangd is extremely using too much resources (RAM, CPU) when project have large header files (commonly with single header file libraries)
 - Visual Studio and helpers (not only compiler and code editor part)
 
+
 ## License <a name="license" />
 
 Why you need a license for coding style. Copyright MaiHD @ Heart and Head.
+
 
 ## Additional Resources <a name="additional-resources" />
 
