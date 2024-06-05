@@ -8,7 +8,10 @@
 ///     - C++: just use function overloading
 
 
+#include <stddef.h>
 #include <stdio.h>
+#include <stdint.h>
+#include <string.h>
 
 
 typedef struct vec2
@@ -115,6 +118,37 @@ vec3 vec3_new(void)
 #endif
 
 
+//
+// A simple implementation of Str constructor, that worked on all mainstream compilers
+//
+
+
+typedef struct Str
+{
+    size_t      len;
+    const char* data;
+} Str;
+
+
+#ifdef __cplusplus
+template <size_t N>
+Str str(const char (&data)[N])
+{
+    return Str { N - 1, data };
+}
+
+
+Str str(const char* data, size_t len)
+{
+    return Str { len, data };
+}
+#else
+
+#define __str_ctor(args, x, y, ...) ((Str){ .len = y, .data = x })
+#define str(...)                    __str_ctor((__VA_ARGS__), ##__VA_ARGS__, sizeof(__VA_ARGS__) - 1, ~)
+
+#endif
+
 int main()
 {
     vec2 v = vec2(1, 2);
@@ -125,6 +159,7 @@ int main()
     printf("v1 = { %f, %f }\n", v1.x, v1.y);
     printf("v0 = { %f, %f }\n", v0.x, v0.y);
 
+
     vec3 v3 = vec3(1, 2, 3);
     vec3 v3_1 = vec3(1);
     vec3 v3_0 = vec3();
@@ -132,6 +167,13 @@ int main()
     printf("v3 = { %f, %f, %f }\n", v3.x, v3.y, v3.z);
     printf("v3_1 = { %f, %f, %f }\n", v3_1.x, v3_1.y, v3_1.z);
     printf("v3_0 = { %f, %f, %f }\n", v3_0.x, v3_0.y, v3_0.z);
+
+
+    Str s = str("");
+    Str s1 = str("1", 1);
+
+    printf("s = { .len = %zu, .data = \"%s\" }\n", s.len, s.data);
+    printf("s1 = { .len = %zu, .data = \"%s\" }\n", s1.len, s1.data);
 
     return 0;
 }
