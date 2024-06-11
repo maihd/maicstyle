@@ -207,7 +207,8 @@ int main()
     Str s1 = str("1", 1);
 
     const char* char_ptr = "123";
-    Str s2 = str(char_ptr); // clang-tidy will complain this use sizeof(char_ptr), which is false warning
+    Str s2 = str(char_ptr); // NOLINT         
+                            // clang-tidy will complain this use sizeof(char_ptr), which is false warning
 
     printf("s = { .len = %zu, .data = \"%s\" }\n", s.len, s.data);
     printf("s1 = { .len = %zu, .data = \"%s\" }\n", s1.len, s1.data);
