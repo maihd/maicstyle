@@ -178,8 +178,9 @@ Str str(const char* data, size_t len)
         , default:            ((Str){ .len = __str_ctor_len(x, y), .data = x })     \
     )
 
-#define str(...) __str_ctor((__VA_ARGS__), ##__VA_ARGS__, (no_arg_t){0}, ~)
 
+#define str(...) __str_ctor((__VA_ARGS__), ##__VA_ARGS__, (no_arg_t){0}, ~) //NOLINT(bugprone-sizeof-expression)
+                                                                            // clang-tidy will complain this use sizeof(char*), which is false warning
 #endif
 
 
@@ -207,8 +208,7 @@ int main()
     Str s1 = str("1", 1);
 
     const char* char_ptr = "123";
-    Str s2 = str(char_ptr); // NOLINT         
-                            // clang-tidy will complain this use sizeof(char_ptr), which is false warning
+    Str s2 = str(char_ptr);
 
     printf("s = { .len = %zu, .data = \"%s\" }\n", s.len, s.data);
     printf("s1 = { .len = %zu, .data = \"%s\" }\n", s1.len, s1.data);
