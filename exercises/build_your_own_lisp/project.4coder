@@ -1,0 +1,17 @@
+version(2);
+project_name = "build_your_own_lisp";
+
+patterns = {
+    "*.c",
+    "*.h"
+};
+
+blacklist_patterns = {
+    ".*"
+};
+
+load_paths = {
+    .win = {
+        { .path = ".", .recursive = true, .relative = true }
+    },
+};
