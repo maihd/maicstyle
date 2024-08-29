@@ -245,3 +245,4 @@ This section is a resources to other styles that help me through time, and it's 
 - [Insomniac's Coding Standard](https://gist.github.com/Kerollmops/fcad27cfef9e3552cb75a3d201494ba6)
 - [Lucas Sas's Modern C](https://www.youtube.com/watch?v=QpAhX-gsHMs)
 - [Eskil Steenberg's How I program C](https://www.youtube.com/watch?v=443UNeGrFoM&list=PLT6InxK-XQvOpYklsuSAcQ9zmVDClRX6x&index=1)
+- [Mordern C in BeefLang](https://github.com/maihd/FunWithBeef/blob/main/Essays/BeefForModernC/README.md)
