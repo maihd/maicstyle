@@ -2,6 +2,10 @@
 
 clang++ -c lib.cpp -o lib.o
 
-llvm-ar rcs lib.lib lib.o
+clang++ -c main.c -o main.o
 
-clang++ main.c lib.lib -o a.exe
+clang++ main.o lib.o -o a2.exe
+
+a2.exe
+
+del a2.exe
