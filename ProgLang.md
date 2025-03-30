@@ -11,16 +11,16 @@ All features and extensions that should use for MaiCStyle
 
 ## C standard and extensions
 - C99 is enough to use in all cases
-- C11 if you need some things fancy, modern
+- C11 if you need some things fancy, modern (Generics, static assert)
 - C2x never used
-  
+
 
 ## C++ Extensions
-- Designated initializer
-  
+- Designated initializer (required G++ or Clang++)
+
 
 ## C++ avoid features
-- RTTI, std::type_info. If Reflection and Serialization is needed, roll your own implementation.
+- RTTI, `std::type_info`. If Reflection and Serialization is needed, roll your own implementation.
 - Exceptions, avoid as all costs.
 - Deep and complex class inheritation hierarchy.
 - Interface for polymorphism over class.
