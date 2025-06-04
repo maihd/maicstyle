@@ -11,6 +11,14 @@
 - Note: this project can be consider as a R&D for Mai personal work, you can find some ideas in `docs` folder.
 
 
+# Language can affect this style
+Language that mostly can use DoD approachs:
+- C/C++
+- Beef
+- Zig
+- C#
+
+
 # Table of Contents
 
 1. [Inventing on Principles](#inventing-on-principles)
