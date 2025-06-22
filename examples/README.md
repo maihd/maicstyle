@@ -10,7 +10,7 @@ In special case, build scripts were provided.
 - [Compiler Extensions](/compiler_extensions)
 - [Compute hash as compile-time with preprocessor](/const_hash_preprocessor)
 - [Compute hash as compile-time with external tools](/const_hash_with_tools)
-- [Data structor constructor in C11](/constructor)
+- [Data structure constructor in C11](/constructor)
 - [Designated initializer for C++ (gcc/clang)](/cpp_design_init)
 - [Defer execution to end of scope](/defer_and_scope)
 - [Error handling](/error_handling)
