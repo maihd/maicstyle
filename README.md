@@ -254,3 +254,4 @@ This section is a resources to other styles that help me through time, and it's 
 - [Lucas Sas's Modern C](https://www.youtube.com/watch?v=QpAhX-gsHMs)
 - [Eskil Steenberg's How I program C](https://www.youtube.com/watch?v=443UNeGrFoM&list=PLT6InxK-XQvOpYklsuSAcQ9zmVDClRX6x&index=1)
 - [Mordern C in BeefLang](https://github.com/maihd/FunWithBeef/blob/main/Essays/BeefForModernC/README.md)
+- https://github.com/zakirullin/cognitive-load 
