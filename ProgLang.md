@@ -4,10 +4,11 @@ All features and extensions that should use for MaiCStyle
 
 ## Paradigms
 - Make the job done
-- Yolo coding from the start, you dont know the future, so should not always plan ahead (but experience and knowledge can help avoid some bad futures)
+- Yolo coding from the start, you dont know the future, so should not always plan ahead (but experiences and knowledges can help avoid some bad futures)
 - Functional when logic are more important than performance
 - Sometime imperative make the job more easily
 - OOP have its place, but not everywhere
+
 
 ## C standard and extensions
 - C99 is enough to use in all cases
@@ -15,7 +16,19 @@ All features and extensions that should use for MaiCStyle
 - C2x never used
 
 
-## C++ Extensions
+## C++ if needed
+- Prefer Orthodox C++ approachs
+- Keep simple and stupid
+- Keep class hierarchy narrow
+- Composite over inheritance
+- Avoid template metaprogramming in most cases
+- Prefer mature language standards
+    - Only C++11 is good enough
+    - Now C++17 is mature on common compilers
+    - Take care of compiled code in new features
+
+
+## C++ Extensions (maybe used)
 - Designated initializer (required G++ or Clang++)
 
 
@@ -24,4 +37,4 @@ All features and extensions that should use for MaiCStyle
 - Exceptions, avoid as all costs.
 - Deep and complex class inheritation hierarchy.
 - Interface for polymorphism over class.
-- No OOP and design pattern, prefer data structure and algorithm. Simple implementation.
+- No heavy OOP and design pattern, prefer data structure and algorithm. Simple implementation.
