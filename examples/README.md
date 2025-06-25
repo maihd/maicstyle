@@ -17,7 +17,5 @@ In special case, build scripts were provided.
 - [Fake properties with union combine with anonymous union/struct](/fake_properties)
 - [No stdlib, standalone, free runtime 1 (simple)](/free_runtime_1)
 - [Immediate feedback, compile when code save](/immediate_feedback)
-- [Good taste linked list](/linked_list)
-- [Centralized memory allocations (Arena only, no abstract allocators)](/memory_allocations)
 - [C#-like variadic arguments (convert variadic arguments to array)](/params)
 - [Working with strings](/working-with-strings)

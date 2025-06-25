@@ -4,7 +4,6 @@
 - More examples: 
     - Hash table
     - Data structures
-    - System-like error handling: prefer log, assertion over result
 - Complete exercises
 - Create webpage with docgen tools
 - Create tools to demonstrate the ideas that worked
