@@ -7,6 +7,7 @@
 - Complete exercises
 - Create webpage with docgen tools
 - Create tools to demonstrate the ideas that worked
+- API design guide lines, which is the best of how programming style should help
 - Linked List vs Array performance benchmarks
     - Deep dive into implemenetation
     - Suggested usecases
