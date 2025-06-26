@@ -5,3 +5,4 @@
     - No optimize for performance
 
 ## External modules
+- [yyjson](https://github.com/ibireme/yyjson)

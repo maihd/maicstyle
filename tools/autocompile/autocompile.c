@@ -10,6 +10,8 @@
 
 #include "Json.h"
 
+#include "yyjson.h"
+
 
 #ifdef _WIN32
 #   define WIN32_LEAN_AND_MEAN
@@ -54,7 +56,7 @@ typedef enum LoadResult
     LoadResult_UseDefault
 } LoadResult;
 
-
+#ifdef USE_MAI_CJSON
 LoadResult LoadConfig(const char* filePath, Config* outConfig) 
 {
     // Default config
@@ -147,6 +149,69 @@ LoadResult LoadConfig(const char* filePath, Config* outConfig)
     free(allocationBuffer);
     return LoadResult_Success;
 }
+#else
+LoadResult LoadConfig(const char* filePath, Config* outConfig) 
+{
+    // Default config
+    
+    memcpy(outConfig->compiler, DEFAULT_COMPILER, sizeof(DEFAULT_COMPILER));
+    memcpy(outConfig->flags, "", 1);
+    memcpy(outConfig->runParams, "", 1);
+
+    outConfig->watchInterval = 2;
+    outConfig->clearScreen = true;
+
+    // Read config from file
+    yyjson_read_flag flg = YYJSON_READ_ALLOW_COMMENTS | YYJSON_READ_ALLOW_TRAILING_COMMAS;
+    yyjson_read_err err;
+    yyjson_doc* doc = yyjson_read_file(filePath, flg, NULL, &err);
+    if (!doc)
+    {
+        if (err.code != YYJSON_READ_ERROR_FILE_OPEN)
+        {
+            fprintf(stderr, "Failed to read config file: %s", err.msg);
+        }
+
+        return LoadResult_UseDefault;
+    }
+
+    
+    yyjson_val* root = yyjson_doc_get_root(doc);
+    
+    yyjson_val* jsonCompiler = yyjson_obj_get(root, "compiler");
+    if (yyjson_is_str(jsonCompiler))
+    {
+        memcpy(outConfig->compiler, yyjson_get_str(jsonCompiler), yyjson_get_len(jsonCompiler) + 1);
+    }
+
+    yyjson_val* jsonFlags = yyjson_obj_get(root, "flags");
+    if (yyjson_is_str(jsonFlags))
+    {
+        memcpy(outConfig->flags, yyjson_get_str(jsonFlags), yyjson_get_len(jsonFlags) + 1);
+    }
+
+    yyjson_val* jsonRunParams = yyjson_obj_get(root, "runParams");
+    if (yyjson_is_str(jsonRunParams))
+    {
+        memcpy(outConfig->runParams, yyjson_get_str(jsonRunParams), yyjson_get_len(jsonRunParams) + 1);
+    }
+
+    yyjson_val* jsonWatchInterval = yyjson_obj_get(root, "watchInterval");
+    if (yyjson_is_num(jsonWatchInterval))
+    {
+        outConfig->watchInterval = yyjson_get_int(jsonWatchInterval);
+    }
+
+    yyjson_val* jsonClearScreen = yyjson_obj_get(root, "clearScreen");
+    if (yyjson_is_bool(jsonClearScreen))
+    {
+        outConfig->clearScreen = yyjson_get_bool(jsonClearScreen);
+    }
+
+    yyjson_doc_free(doc);
+    return LoadResult_Success;
+}
+#endif
 
 
 time_t GetFileModTime(const char* filename) 
@@ -304,7 +369,7 @@ int main(int argc, const char* argv[])
     printf("Watching %s for changes... (Interval: %d seconds)\n", SOURCE_FILE, config->watchInterval);
     printf("Press Ctrl+C to exit\n");
     
-    HANDLE threadHandle = CreateThread(NULL, 0, WatchThread, &config, 0, NULL);
+    HANDLE threadHandle = CreateThread(NULL, 0, WatchThread, config, 0, NULL);
     if (threadHandle == NULL) 
     {
         fprintf(stderr, "Error creating watch thread\n");
