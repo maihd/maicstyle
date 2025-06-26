@@ -1,25 +1,32 @@
 #include <stdint.h>
+#include <stdbool.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include <time.h>
+#include <errno.h>
 
 #include "Json.h"
 
+
 #ifdef _WIN32
-#include <windows.h>
-#include <sys/stat.h>
-#define stat _stat
-#define PATH_SEP "\\"
-#define EXE_EXT ".exe"
-#define CLEAR_SCREEN "cls"
+#   define WIN32_LEAN_AND_MEAN
+#   include <windows.h>
+#   include <sys/stat.h>
+
+#   define stat             _stat
+#   define PATH_SEP         "\\"
+#   define EXE_EXT          ".exe"
+#   define CLEAR_SCREEN_CMD "cls"
 #else
-#include <unistd.h>
-#include <sys/stat.h>
-#define PATH_SEP "/"
-#define EXE_EXT ""
-#define CLEAR_SCREEN "clear"
+#   include <unistd.h>
+#   include <sys/stat.h>
+
+#   define PATH_SEP         "/"
+#   define EXE_EXT          ""
+#   define CLEAR_SCREEN_CMD "clear"
 #endif
 
 
@@ -33,88 +40,120 @@ typedef struct
 {
     char    compiler[256];
     char    flags[1024];
+    char    runParams[1024];
 
-    int     watchInterval;
-    int     clearScreen;
+    int32_t watchInterval;
+    bool    clearScreen;
 } Config;
 
 
-int LoadConfig(Config* config) 
+typedef enum LoadResult
+{
+    LoadResult_Success,
+    LoadResult_Failure,
+    LoadResult_UseDefault
+} LoadResult;
+
+
+LoadResult LoadConfig(const char* filePath, Config* outConfig) 
 {
     // Default config
     
-    strcpy(config->compiler, DEFAULT_COMPILER);
-    strcpy(config->flags, "");
-    config->watchInterval = 2;
-    config->clearScreen = 1;
+    memcpy(outConfig->compiler, DEFAULT_COMPILER, sizeof(DEFAULT_COMPILER));
+    memcpy(outConfig->flags, "", 1);
+    memcpy(outConfig->runParams, "", 1);
+
+    outConfig->watchInterval = 2;
+    outConfig->clearScreen = true;
 
     // Read config from file
+    FILE* configFile;
+    errno_t ferr = fopen_s(&configFile, filePath, "rb");
+    if (ferr != 0 && ferr != EEXIST)
+    {
+        char errmsg[1024];
+        strerror_s(errmsg, sizeof(errmsg), ferr);
 
-    FILE* configFile = fopen(CONFIG_FILE, "r");
+        fprintf(stderr, "Failed to open file `%s`: %s\n", filePath, errmsg);
+        return LoadResult_UseDefault;
+    }
+
     if (!configFile)
     {
-        return 0;
+        return LoadResult_UseDefault;
     }
 
     fseek(configFile, 0, SEEK_END);
-    uint32_t configFileLength = (uint32_t)ftell(configFile);
+    const uint32_t configFileLength = (uint32_t)ftell(configFile);
     fseek(configFile, 0, SEEK_SET);
 
-    char* configFileContent = malloc(configFileLength * 3);
+    const size_t allocationSize = configFileLength * 3 + 1 > 4096 
+        ? configFileLength * 3 + 1
+        : 4096;
+
+    void* allocationBuffer = malloc(allocationSize);
+
+    char* configFileContent = allocationBuffer;
     configFileContent[configFileLength] = 0;
 
     fread(configFileContent, 1, configFileLength, configFile);
     fclose(configFile);
 
-    uint8_t* buffer = (uint8_t*)configFileContent + configFileLength;
+    void* parseBuffer = (uint8_t*)allocationBuffer + configFileLength + 1;
+    const uint32_t parseBufferSize = allocationSize - configFileLength - 1;
 
     Json root;
-    JsonResult parseResult = JsonParse(CONFIG_FILE, configFileLength, JsonParseFlags_SupportComment, buffer, configFileLength * 2, &root);
+    JsonResult parseResult = JsonParse(configFileContent, configFileLength, JsonParseFlags_Default, parseBuffer, parseBufferSize, &root);
     if (parseResult.error != JsonError_None) 
     {
         fprintf(stderr, "Error loading config file: %s\n", parseResult.message);
-        return 0;
+        free(allocationBuffer);
+        return LoadResult_UseDefault;
     }
+
+    // Apply config fields
     
     Json jsonCompiler;
-    if (!JsonFindWithType(root, "compiler", JsonType_String, &jsonCompiler))
+    if (JsonFindWithType(root, "compiler", JsonType_String, &jsonCompiler) == JsonError_None)
     {
-        return 0;
+        memcpy(outConfig->compiler, jsonCompiler.string, jsonCompiler.length + 1);
     }
     
     Json jsonFlags;
-    if (!JsonFindWithType(root, "flags", JsonType_String, &jsonFlags))
+    if (JsonFindWithType(root, "flags", JsonType_String, &jsonFlags) == JsonError_None)
     {
-        return 0;
+        memcpy(outConfig->flags, jsonFlags.string, jsonFlags.length + 1);
+    }
+    
+    Json jsonRunParams;
+    if (JsonFindWithType(root, "runParams", JsonType_String, &jsonRunParams) == JsonError_None)
+    {
+        memcpy(outConfig->runParams, jsonRunParams.string, jsonRunParams.length);
     }
     
     Json jsonWatchInterval;
-    if (!JsonFindWithType(root, "watchInterval", JsonType_Number, &jsonFlags))
+    if (JsonFindWithType(root, "watchInterval", JsonType_Number, &jsonWatchInterval) == JsonError_None)
     {
-        return 0;
+        outConfig->watchInterval = (int32_t)jsonWatchInterval.number;
     }
     
     Json jsonClearScreen;
-    if (!JsonFindWithType(root, "jsonClearScreen", JsonType_Boolean, &jsonFlags))
+    if (JsonFindWithType(root, "clearScreen", JsonType_Boolean, &jsonClearScreen) == JsonError_None)
     {
-        return 0;
+        printf("jsonClearScreen: %d\n", jsonClearScreen.boolean);
+        outConfig->clearScreen = jsonClearScreen.boolean;
     }
 
-    memcpy(config->flags, jsonFlags.string, jsonFlags.length + 1);
-    memcpy(config->compiler, jsonCompiler.string, jsonCompiler.length + 1);
-    
-    config->watchInterval = (int)jsonWatchInterval.number;
-    config->clearScreen = (int)jsonWatchInterval.boolean;
-
-    free(configFileContent);
-    return 1;
+    free(allocationBuffer);
+    return LoadResult_Success;
 }
 
 
 time_t GetFileModTime(const char* filename) 
 {
     struct stat st;
-    if (stat(filename, &st) != 0) {
+    if (stat(filename, &st) != 0) 
+    {
         return 0;
     }
     return st.st_mtime;
@@ -129,12 +168,7 @@ int Compile(const Config* config)
     
     printf("Compiling: %s\n", command);
     
-    #ifdef _WIN32
     int result = system(command);
-    #else
-    int result = system(command);
-    #endif
-    
     if (result != 0) 
     {
         fprintf(stderr, "Compilation failed\n");
@@ -145,13 +179,17 @@ int Compile(const Config* config)
 }
 
 
-void RunProgram() 
+void RunProgram(const Config* config) 
 {
-    printf("Running program:\n");
+    char run_exe[256];
+    snprintf(run_exe, sizeof(run_exe), "%s%s", OUTPUT_FILE, EXE_EXT);
+    
+    char run_cmd[2048];
+    snprintf(run_cmd, sizeof(run_cmd), "%s %s", run_exe, config->runParams);
+
+    printf("Running program: %s\n", run_cmd);
     printf("----------------------------------------\n");
     
-    char run_cmd[256];
-    snprintf(run_cmd, sizeof(run_cmd), "%s%s", OUTPUT_FILE, EXE_EXT);
     int result = system(run_cmd);
     
     printf("----------------------------------------\n");
@@ -163,7 +201,7 @@ void ClearScreenIfEnabled(const Config* config)
 {
     if (config->clearScreen) 
     {
-        system(CLEAR_SCREEN);
+        system(CLEAR_SCREEN_CMD);
     }
 }
 
@@ -191,7 +229,7 @@ DWORD WINAPI WatchThread(LPVOID lpParam)
             ClearScreenIfEnabled(config);
             if (Compile(config)) 
             {
-                RunProgram();
+                RunProgram(config);
             }
         }
         
@@ -231,33 +269,43 @@ void WatchLoop(const Config *config)
 }
 #endif
 
-int main() 
+
+int main(int argc, const char* argv[]) 
 {
-    Config config;
-    
-    if (!LoadConfig(&config)) 
+    Config* config = malloc(sizeof(Config));
+
+    const char* configFilePath = CONFIG_FILE;
+    if (argc > 1)
+    {
+        configFilePath = argv[1];
+    }
+
+    if (LoadConfig(configFilePath, config) == LoadResult_UseDefault) 
     {
         printf("Using default configuration\n");
     }
     
     printf("Auto-Compiler Configuration:\n");
-    printf("  Compiler: %s\n", config.compiler);
-    printf("  Flags: %s\n", config.flags);
-    printf("  Watch Interval: %d seconds\n", config.watchInterval);
-    printf("  Clear Screen: %s\n", config.clearScreen ? "Yes" : "No");
+    printf("  Compiler: %s\n", config->compiler);
+    printf("  Flags: %s\n", config->flags);
+    printf("  Run params: %s\n", config->runParams);
+    printf("  Watch Interval: %d seconds\n", config->watchInterval);
+    printf("  Clear Screen: %s\n", config->clearScreen ? "Yes" : "No");
+
+    // Run program as launch time
     
-    ClearScreenIfEnabled(&config);
-    if (Compile(&config)) 
+    ClearScreenIfEnabled(config);
+    if (Compile(config)) 
     {
-        RunProgram();
+        RunProgram(config);
     }
     
-    #ifdef _WIN32
-    printf("Watching %s for changes... (Interval: %d seconds)\n", SOURCE_FILE, config.watchInterval);
+#ifdef _WIN32
+    printf("Watching %s for changes... (Interval: %d seconds)\n", SOURCE_FILE, config->watchInterval);
     printf("Press Ctrl+C to exit\n");
     
-    HANDLE thread = CreateThread(NULL, 0, WatchThread, &config, 0, NULL);
-    if (thread == NULL) 
+    HANDLE threadHandle = CreateThread(NULL, 0, WatchThread, &config, 0, NULL);
+    if (threadHandle == NULL) 
     {
         fprintf(stderr, "Error creating watch thread\n");
         return 1;
@@ -268,11 +316,13 @@ int main()
     {
         Sleep(1000);
     }
-    #else
+#else
     printf("Watching %s for changes... (Interval: %d seconds)\n", SOURCE_FILE, config.watch_interval);
     printf("Press Ctrl+C to exit\n");
     WatchLoop(&config);
-    #endif
+#endif
     
     return 0;
 }
+
+//! EOF

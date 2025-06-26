@@ -899,7 +899,7 @@ static char* JsonParser_ParseStringNoToken(JsonParser* parser, int32_t* outLengt
     JsonParser_MatchChar(parser, JsonType_String, '"');
     if (buffer.count > 0)
     {
-        if (outLength) *outLength = length;
+        if (outLength) *outLength = JsonTempArray_GetCount(&buffer);
         JsonTempArray_Push(&buffer, 0, &parser->allocator);
 
         char* string = (char*)JsonTempArray_ToBuffer(&buffer, &parser->allocator);
