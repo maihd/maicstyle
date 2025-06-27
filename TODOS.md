@@ -1,9 +1,15 @@
 # List of things todos
 - Priority: Refactory to deep dive into study and research, more on workflow, use in real-life applications, combine with other languages/applications
 - Practice templates: oneshot program to write in 30 minutes - 1 hour, and remove after that
+- Advanced coding techniques:
+    - Code path flow
+    - Error handling
+    - Effortless coding with C
+
 - More examples: 
     - Hash table
     - Data structures
+
 - Complete exercises
 - Create webpage with docgen tools
 - Create tools to demonstrate the ideas that worked
