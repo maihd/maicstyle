@@ -38,3 +38,15 @@ All features and extensions that should use for MaiCStyle
 - Deep and complex class inheritation hierarchy.
 - Interface for polymorphism over class.
 - No heavy OOP and design pattern, prefer data structure and algorithm. Simple implementation.
+
+
+## Uniserval keywords
+See details in example/compiler_extenions
+- `nullptr`
+- `alignof`, `alignas`
+- `__forceinline`
+- `constexpr`
+- `__enum_type`
+- `__default_init`
+- `__typename`
+- `__deprecated`
