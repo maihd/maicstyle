@@ -20,3 +20,4 @@
     - Conclusion: 
         - No data structure are silver bullet
         - No perfection in real life software, and array is good enough data structure for common cases
+- New journey
