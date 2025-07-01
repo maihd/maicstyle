@@ -7,7 +7,7 @@ typedef struct HashLinkNode HashLinkNode;
 struct HashLinkNode
 {
     HashLinkNode*   next;
-
+    
     uint32_t        key;
     uint32_t        value;
 };
@@ -24,12 +24,12 @@ void hash_link_add(HashLink* head, uint32_t key, uint32_t value)
 {
     HashLinkNode* node = malloc(sizeof(HashLinkNode));
     node->next = NULL;
-
+    
     node->key = key;
     node->value = value;
-
+    
     int32_t entry_index = key % head->entry_count;
-
+    
     HashLinkNode* tail = head->entries[entry_index + head->entry_count];
     if (tail)
     {
@@ -47,7 +47,7 @@ void hash_link_add(HashLink* head, uint32_t key, uint32_t value)
 uint32_t hash_link_find(HashLink* head, uint32_t key, uint32_t def_value)
 {
     int32_t entry_index = key % head->entry_count;
-
+    
     HashLinkNode* node = head->entries[entry_index];
     while (node != NULL)
     {
@@ -55,7 +55,7 @@ uint32_t hash_link_find(HashLink* head, uint32_t key, uint32_t def_value)
         {
             return node->value;
         }
-
+        
         node = node->next;
     }
     
@@ -71,7 +71,7 @@ HashLink* hash_link_new(int32_t entry_count)
     {
         head->entries[i] = NULL;
     }
-
+    
     return head;
 }
 
@@ -88,7 +88,7 @@ void hash_link_free(HashLink* head)
             node = next;
         }
     }
-
+    
     free(head);
 }
 
@@ -102,13 +102,13 @@ int main()
     hash_link_add(head, strhash("STR_KEY"), 0);
     hash_link_add(head, strhash("STR_KEY_1"), 1);
     hash_link_add(head, strhash("STR_KEY_2"), 2);
-
+    
     printf("hash_link_find(STR_KEY) = %u\n", hash_link_find(head, strhash("STR_KEY"), -1));
     printf("hash_link_find(STR_KEY_1) = %u\n", hash_link_find(head, strhash("STR_KEY_1"), -1));
     printf("hash_link_find(STR_KEY_2) = %u\n", hash_link_find(head, strhash("STR_KEY_2"), -1));
-
+    
     hash_link_free(head);
-
+    
     return 0;
 }
 
@@ -117,7 +117,7 @@ int main()
 uint32_t strhash(const char* str)
 {
     uint32_t h = 0;
-
+    
     uint32_t c;
     while ((c = *str++))
     {
@@ -127,7 +127,7 @@ uint32_t strhash(const char* str)
         h *= c;
         h |= (c << 24);
     }
-
+    
     return h;
 }
 
