@@ -2,9 +2,9 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-typedef struct HashLinkEntry HashLinkNode;
+typedef struct HashLinkNode HashLinkNode;
 
-struct HashLinkEntry
+struct HashLinkNode
 {
     HashLinkNode*   next;
 
@@ -15,8 +15,8 @@ struct HashLinkEntry
 
 typedef struct HashLink
 {
-    int32_t        entry_count;
-    HashLinkNode*  entries[];
+    int32_t         entry_count;
+    HashLinkNode*   entries[];
 } HashLink;
 
 
@@ -28,15 +28,25 @@ void hash_link_add(HashLink* head, uint32_t key, uint32_t value)
     node->key = key;
     node->value = value;
 
-    int32_t entry_index = key & (head->entry_count);
-    node->next = head->entries[entry_index];
-    head->entries[entry_index] = node;
+    int32_t entry_index = key % head->entry_count;
+
+    HashLinkNode* tail = head->entries[entry_index + head->entry_count];
+    if (tail)
+    {
+        tail->next = node;
+    }
+    else
+    {
+        head->entries[entry_index] = node;
+    }
+    
+    head->entries[entry_index + head->entry_count] = node;
 }
 
 
 uint32_t hash_link_find(HashLink* head, uint32_t key, uint32_t def_value)
 {
-    int32_t entry_index = key & (head->entry_count);
+    int32_t entry_index = key % head->entry_count;
 
     HashLinkNode* node = head->entries[entry_index];
     while (node != NULL)
@@ -55,9 +65,9 @@ uint32_t hash_link_find(HashLink* head, uint32_t key, uint32_t def_value)
 
 HashLink* hash_link_new(int32_t entry_count)
 {
-    HashLink* head = malloc(sizeof(HashLink) + sizeof(HashLinkNode*) * entry_count);
+    HashLink* head = malloc(sizeof(HashLink) + sizeof(HashLinkNode*) * entry_count * 2);
     head->entry_count = entry_count;
-    for (int i = 0; i < entry_count; i++)
+    for (int i = 0; i < entry_count * 2; i++)
     {
         head->entries[i] = NULL;
     }
@@ -78,6 +88,8 @@ void hash_link_free(HashLink* head)
             node = next;
         }
     }
+
+    free(head);
 }
 
 
