@@ -1,6 +1,6 @@
 # C/C++ Programming language definitons
 All features and extensions that should use for MaiCStyle
-
+Combine C/C++ with clang compiler to form a good language with some ergonomic features for productivity
 
 ## Paradigms
 - Make the job done
