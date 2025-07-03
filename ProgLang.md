@@ -49,6 +49,7 @@ See details in example/compiler_extenions
 - `__default_init`
 - `__typename`
 - `__deprecated`
+- `__deprecated_msg`
 
 
 # Combine C/C++ 
