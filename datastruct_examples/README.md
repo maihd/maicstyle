@@ -11,7 +11,7 @@ In special case, build scripts were provided.
 - [Centralized memory allocations (Arena only, no abstract allocators)](/memory_allocations)
 
 
-## Data structures
+## Common data structures
 - Array: buffer, count, capacity
 - Sparse set/array: array with holes/unused items
 - Vector: resizable array, best for dynamic usages, may cause problem in hot loops, should avoid to use it as huge containers
@@ -21,7 +21,16 @@ In special case, build scripts were provided.
 - Lookup array: simple array store index/offset for spareset array
 - Handle lookup array: for weak reference fast lookup
 - Hash indexor: fast lookup of index/address of actual array, use open SoA to fast iteration through keys, can use SIMD for acceleration
-- Hash link: linear chaining hash table, from hash to find index/pointer/handle. Acceptable performance in linear allocated memory (item sit near each others in address space) 
+- Hash link: linear chaining hash table, from hash to find index/pointer/handle. Acceptable performance in linear allocated memory (item sit near each others in address space)
+
+
+## Abstract data structures (from book)
+- Stack and queue: an abstractions of array or list.
+
+
+## Caching data structures
+- Ring buffer: usually non-resizable, infinite circular loop for accessing items
+- LRU and MRU cached: implement with ring buffer, or queue
 
 
 ## Memory access patterns

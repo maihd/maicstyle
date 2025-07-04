@@ -73,13 +73,14 @@ Working on it.
 
 ## Programming Languages, Standards, Spirits <a name="proglang-standards-spirits" />
 
-- Use C99 and C++11.
+- Basically use C99 and C++11.
     - Update 5/6/2024: C11 (C17 just a fix bugs version of C11) and C++17 widely support now (MSCV, Clang, GCC). But without appreciate reasons, you should avoid thoses features.
+    - Update 3/7/2025: C11 and C++20
 - Follow spririts of C, simple and easy to read.
-- `#pragma once` is widely supported now. Use it prefer to header guards.
+- `#pragma once` is widely supported now. Use it preferly to header guards.
 - Use unix encoding.
 - Content file only support ASCII. Donot use utf8 file format.
-- Prefer code that both compile on C and C++
+- Prefer code that both compile on C and C++, especially on header files.
 - Some features can be support both on C and C++ with extensions, define a keyword with preprocessor.
 - Preprocessor is not bad. Duck typing is not bad. Un-tested code is bad. Write the code are needed to be written, test and proof that code work, are the good resolutions for thoses problems.
 - Prefer clang (and family like zig cc) for toolchains, feel free to use extensions if project is clang-only.
@@ -193,7 +194,7 @@ This section need a database, because naming is enormous and must have only one 
     - Seperate functions, types declaration group with 1 empty line
     - Separate functions, types define with 2 empty lines
 
- 
+
 ## Function
 - Grouping chunk by work, what to do
 - Prefer clear, readable code
@@ -254,4 +255,4 @@ This section is a resources to other styles that help me through time, and it's 
 - [Lucas Sas's Modern C](https://www.youtube.com/watch?v=QpAhX-gsHMs)
 - [Eskil Steenberg's How I program C](https://www.youtube.com/watch?v=443UNeGrFoM&list=PLT6InxK-XQvOpYklsuSAcQ9zmVDClRX6x&index=1)
 - [Mordern C in BeefLang](https://github.com/maihd/FunWithBeef/blob/main/Essays/BeefForModernC/README.md)
-- https://github.com/zakirullin/cognitive-load 
+- https://github.com/zakirullin/cognitive-load

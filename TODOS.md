@@ -6,18 +6,19 @@
     - Error handling
     - Effortless coding with C
 
-- More examples: 
+- More examples:
     - Hash table
     - Data structures
 
 - Complete exercises
 - Create webpage with docgen tools
 - Create tools to demonstrate the ideas that worked
+- Exploring coding style, review its
 - API design guide lines, which is the best of how programming style should help
 - Linked List vs Array performance benchmarks
     - Deep dive into implemenetation
     - Suggested usecases
-    - Conclusion: 
+    - Conclusion:
         - No data structure are silver bullet
         - No perfection in real life software, and array is good enough data structure for common cases
 - New journey

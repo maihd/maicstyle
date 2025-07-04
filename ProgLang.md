@@ -1,7 +1,6 @@
 # C/C++ Programming language definitons
 All features and extensions that should use for MaiCStyle
 
-
 ## Paradigms
 - Make the job done
 - Yolo coding from the start, you dont know the future, so should not always plan ahead (but experiences and knowledges can help avoid some bad futures)
@@ -54,3 +53,8 @@ See details in example/compiler_extenions
 - `__typename`
 - `__deprecated`
 - `__deprecated_msg`
+
+
+# Combine C/C++ 
+Combine C/C++ with clang compiler to form a good language with some ergonomic features for productivity.
+One of showcase are Mai Vectormath library use this form of language to make API more ergonomic.
