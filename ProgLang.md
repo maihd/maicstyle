@@ -26,10 +26,13 @@ All features and extensions that should use for MaiCStyle
     - Only C++11 is good enough
     - Now C++17 is mature on common compilers
     - Take care of compiled code in new features
+- If statement with init-statement
+- Constexpr
 
 
 ## C++ Extensions (maybe used)
 - Designated initializer (required G++ or Clang++)
+- Compiler-depended attributes, modifiers
 
 
 ## C++ avoid features
@@ -44,9 +47,10 @@ All features and extensions that should use for MaiCStyle
 See details in example/compiler_extenions
 - `nullptr`
 - `alignof`, `alignas`
-- `__forceinline`
 - `constexpr`
+- `__forceinline`
 - `__enum_type`
 - `__default_init`
 - `__typename`
 - `__deprecated`
+- `__deprecated_msg`
