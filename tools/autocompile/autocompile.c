@@ -310,7 +310,7 @@ void WatchLoop(const Config *config)
     
     while (1) 
     {
-        time_t current_mtime = get_file_mtime(SOURCE_FILE);
+        time_t current_mtime = GetFileModTime(SOURCE_FILE);
         
         if (current_mtime != last_mtime) 
         {
@@ -322,14 +322,14 @@ void WatchLoop(const Config *config)
             
             last_mtime = current_mtime;
             
-            clear_screen_if_enabled(config);
-            if (compile_file(config)) 
+            ClearScreenIfEnabled(config);
+            if (Compile(config)) 
             {
-                run_program();
+                RunProgram(config);
             }
         }
         
-        sleep(config->watch_interval);
+        sleep(config->watchInterval);
     }
 }
 #endif
@@ -382,9 +382,9 @@ int main(int argc, const char* argv[])
         Sleep(1000);
     }
 #else
-    printf("Watching %s for changes... (Interval: %d seconds)\n", SOURCE_FILE, config.watch_interval);
+    printf("Watching %s for changes... (Interval: %d seconds)\n", SOURCE_FILE, config->watchInterval);
     printf("Press Ctrl+C to exit\n");
-    WatchLoop(&config);
+    WatchLoop(config);
 #endif
     
     return 0;
