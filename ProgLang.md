@@ -42,12 +42,14 @@ All features and extensions that should use for MaiCStyle
 - No heavy OOP and design pattern, prefer data structure and algorithm. Simple implementation.
 
 
-## Uniserval keywords
+## Extended Uniserval Keywords
 See details in example/compiler_extenions
 - `nullptr`
 - `alignof`, `alignas`
 - `constexpr`
+- `static_assert`
 - `__forceinline`
+- `__vectorcall`
 - `__enum_type`
 - `__default_init`
 - `__typename`

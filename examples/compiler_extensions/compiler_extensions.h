@@ -3,7 +3,8 @@
 // An example of compiler extensions that commonly use in many projects of mine.
 // __vectorcall: unused
 // __forceinline: widely used in math library, and this is shorter than __attribute__((always_inline))
-// __deprecated: make an API deprecated
+// __deprecated: mark an API deprecated
+// __deprecated_msg: mark an API deprecated with compile time message
 // constexpr: only use for constants, constexpr functions are not supported in C
 // nullptr: easier to write than NULL, have the same semantic with NULL
 // __enum_type: make an enum type in C more like a enum type in C++ (actually no-ops, just to make C++ code compile with C compiler)
@@ -14,28 +15,60 @@
 // Function call conventions
 // -------------------------------------------------------------
 
-#if defined(__GNUC__)
-#   define __vectorcall  /* NO VECTORCALL SUPPORTED */
-#   define __forceinline static __attribute__((always_inline))
+/// __vectorcall
+/// Support __vectorcall for non MSVC compiler
+#if !defined(_WIN32) && !defined(__vectorcall)
+#if defined(__clang__)
+#   define __vectorcall __attribute__((vectorcall))
+#else
+#   define __vectorcall /* NO VECTORCALL SUPPORTED */
+#endif
 #endif
 
+
+/// __forceinline
+/// Support __forceinline for non MSVC compiler
+#if !defined(_WIN32) && !defined(__forceinline)
+#   define __forceinline static __attribute__((always_inline)) inline
+#endif
+
+
+/// __deprecated
+/// Uniserval compiler of __deperecated (Apple SDK)
 #if !defined(__deprecated)
 #if defined(_MSC_VER)
-#define __deprecated(msg) __declspec(deprecated)
+#define __deprecated __declspec(deprecated)
 #else
-#define __deprecated(msg) __attribute__((deprecated("" msg)))
+#define __deprecated __attribute__((deprecated))
 #endif
 #endif
+
+
+/// __deprecated_msg
+/// Uniserval compiler of __deperecated_msg (Apple SDK)
+#if !defined(__deprecated)
+#if defined(_MSC_VER)
+#define __deprecated_msg(msg) __declspec(deprecated(msg))
+#else
+#define __deprecated_msg(msg) __attribute__((deprecated(msg)))
+#endif
+#endif
+
 
 // -------------------------------------------------------------
 // C++ modifiers for C
 // -------------------------------------------------------------
 
-#if !defined(__cplusplus) && !defined(constexpr)
+/// constexpr
+/// C++ constexpr
+#if !(defined(__cplusplus) || (__STDC_VERSION__ >= 202311L)) && !defined(constexpr)
 #define constexpr static const
 #endif
 
-#if !defined(__cplusplus) && !defined(nullptr)
+
+/// nullptr
+/// C++ nullptr 
+#if !(defined(__cplusplus) || (__STDC_VERSION__ >= 202311L)) && !defined(nullptr)
 #define nullptr ((void*)0)
 #endif
 
@@ -43,14 +76,23 @@
 // C extensions that commonly use in C++
 // -------------------------------------------------------------
 
+/// __enum_type
+/// Define underlying type for enum
+/// @note(maihd): 
+///     enum in C does not support underlying type yet (until C23), 
+///     so maybe cause different struct layout inbetween C/C++ world
 #if !defined(__enum_type)
-#if defined(__cplusplus)
+#if defined(__cplusplus) || (__STDC_VERSION__ >= 202311L)
 #define __enum_type(T) : T
 #else
 #define __enum_type(T)
 #endif
 #endif
 
+
+/// __default_init 
+/// Default initialization for struct fields and function arguments
+/// Help to support universal API in C/C++ world (more ergonomics)
 #if !defined(__default_init)
 #ifdef __cplusplus
 #define __default_init(expr) = (expr)
@@ -64,7 +106,8 @@
 // -------------------------------------------------------------
 
 /// __typename
-/// @spoiler: long definition
+/// Get name of type with help of C++ constexpr to make sure type is existed
+/// @spoiler(maihd): long definition
 #if !defined(__typename)
 #if !defined(__cplusplus) || defined(USE_FAST_TYPENAME)
 #define __typename(T) #T
