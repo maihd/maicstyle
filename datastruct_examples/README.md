@@ -25,7 +25,8 @@ In special case, build scripts were provided.
 
 
 ## Abstract data structures (from book)
-- Stack and queue: an abstractions of array or list.
+- Stack and queue: an abstractions of array or list for special use case, maybe use ring buffer to avoid dynamic memory allocations.
+- Tree: to manage inherit relations of data object, also implement-depend to choose array/list.
 
 
 ## Caching data structures
