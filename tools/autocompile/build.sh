@@ -3,4 +3,4 @@
 CFLAGS="-std=c11 -I../slibs/include"
 LFLAGS=""
 
-clang autocompile.c Json.c ../slibs/src/slibs.c -o autocompile $CFLAGS $LFLAGS
+clang autocompile.c ../slibs/src/slibs.c -o autocompile $CFLAGS $LFLAGS

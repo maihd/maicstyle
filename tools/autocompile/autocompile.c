@@ -8,8 +8,6 @@
 #include <time.h>
 #include <errno.h>
 
-#include "Json.h"
-
 #include "yyjson.h"
 
 
@@ -56,100 +54,6 @@ typedef enum LoadResult
     LoadResult_UseDefault
 } LoadResult;
 
-#ifdef USE_MAI_CJSON
-LoadResult LoadConfig(const char* filePath, Config* outConfig) 
-{
-    // Default config
-    
-    memcpy(outConfig->compiler, DEFAULT_COMPILER, sizeof(DEFAULT_COMPILER));
-    memcpy(outConfig->flags, "", 1);
-    memcpy(outConfig->runParams, "", 1);
-
-    outConfig->watchInterval = 2;
-    outConfig->clearScreen = true;
-
-    // Read config from file
-    FILE* configFile;
-    errno_t ferr = fopen_s(&configFile, filePath, "rb");
-    if (ferr != 0 && ferr != EEXIST)
-    {
-        char errmsg[1024];
-        strerror_s(errmsg, sizeof(errmsg), ferr);
-
-        fprintf(stderr, "Failed to open file `%s`: %s\n", filePath, errmsg);
-        return LoadResult_UseDefault;
-    }
-
-    if (!configFile)
-    {
-        return LoadResult_UseDefault;
-    }
-
-    fseek(configFile, 0, SEEK_END);
-    const uint32_t configFileLength = (uint32_t)ftell(configFile);
-    fseek(configFile, 0, SEEK_SET);
-
-    const size_t allocationSize = configFileLength * 3 + 1 > 4096 
-        ? configFileLength * 3 + 1
-        : 4096;
-
-    void* allocationBuffer = malloc(allocationSize);
-
-    char* configFileContent = allocationBuffer;
-    configFileContent[configFileLength] = 0;
-
-    fread(configFileContent, 1, configFileLength, configFile);
-    fclose(configFile);
-
-    void* parseBuffer = (uint8_t*)allocationBuffer + configFileLength + 1;
-    const uint32_t parseBufferSize = allocationSize - configFileLength - 1;
-
-    Json root;
-    JsonResult parseResult = JsonParse(configFileContent, configFileLength, JsonParseFlags_Default, parseBuffer, parseBufferSize, &root);
-    if (parseResult.error != JsonError_None) 
-    {
-        fprintf(stderr, "Error loading config file: %s\n", parseResult.message);
-        free(allocationBuffer);
-        return LoadResult_UseDefault;
-    }
-
-    // Apply config fields
-    
-    Json jsonCompiler;
-    if (JsonFindWithType(root, "compiler", JsonType_String, &jsonCompiler) == JsonError_None)
-    {
-        memcpy(outConfig->compiler, jsonCompiler.string, jsonCompiler.length + 1);
-    }
-    
-    Json jsonFlags;
-    if (JsonFindWithType(root, "flags", JsonType_String, &jsonFlags) == JsonError_None)
-    {
-        memcpy(outConfig->flags, jsonFlags.string, jsonFlags.length + 1);
-    }
-    
-    Json jsonRunParams;
-    if (JsonFindWithType(root, "runParams", JsonType_String, &jsonRunParams) == JsonError_None)
-    {
-        memcpy(outConfig->runParams, jsonRunParams.string, jsonRunParams.length);
-    }
-    
-    Json jsonWatchInterval;
-    if (JsonFindWithType(root, "watchInterval", JsonType_Number, &jsonWatchInterval) == JsonError_None)
-    {
-        outConfig->watchInterval = (int32_t)jsonWatchInterval.number;
-    }
-    
-    Json jsonClearScreen;
-    if (JsonFindWithType(root, "clearScreen", JsonType_Boolean, &jsonClearScreen) == JsonError_None)
-    {
-        printf("jsonClearScreen: %d\n", jsonClearScreen.boolean);
-        outConfig->clearScreen = jsonClearScreen.boolean;
-    }
-
-    free(allocationBuffer);
-    return LoadResult_Success;
-}
-#else
 LoadResult LoadConfig(const char* filePath, Config* outConfig) 
 {
     // Default config
@@ -211,7 +115,6 @@ LoadResult LoadConfig(const char* filePath, Config* outConfig)
     yyjson_doc_free(doc);
     return LoadResult_Success;
 }
-#endif
 
 
 time_t GetFileModTime(const char* filename) 
