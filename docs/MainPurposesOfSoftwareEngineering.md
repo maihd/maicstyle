@@ -1,0 +1,3 @@
+- Main purposes of programming: data structures and algorithms. HOW!
+- Main purposes of development: implementing features, make software become real. WHAT!
+- Main purposes of software engineering: software architectures, devops, what features to use. WHY! (and meta how and what).
