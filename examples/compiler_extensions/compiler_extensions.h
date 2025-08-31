@@ -76,16 +76,17 @@
 // C extensions that commonly use in C++
 // -------------------------------------------------------------
 
-/// __enum_type
+/// __enum_vtype
 /// Define underlying type for enum
 /// @note(maihd): 
-///     enum in C does not support underlying type yet (until C23), 
+///     - `__enum_vtype` mean value type of enum, better than `__enum_type`
+///     - `enum` in C does not support underlying type yet (until C23),
 ///     so maybe cause different struct layout inbetween C/C++ world
-#if !defined(__enum_type)
-#if defined(__cplusplus) || (__STDC_VERSION__ >= 202311L)
-#define __enum_type(T) : T
+#if !defined(__enum_vtype)
+#if defined(__cplusplus) || (__STDC_VERSION__ >= 202311L) || (defined(__GNUC__) && __has_extension(c_fixed_enum))
+#define __enum_vtype(T) : T
 #else
-#define __enum_type(T)
+#define __enum_vtype(T)
 #endif
 #endif
 
