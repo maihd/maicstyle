@@ -53,6 +53,7 @@ Language that mostly can use DoD approachs:
     - Immediate feedback, also know as low-latency iterations
     - Inventing on principles (recursive until there are no principles needed)
     - Incrementally development
+    - Imperfectism
     - Low level for abstractions
     - Love and passion
     - Learn the hard way

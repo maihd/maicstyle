@@ -5,7 +5,7 @@ set LFLAGS=
 
 pushd %~dp0
 
-clang autocompile.c Json.c ../slibs/src/slibs.c -o autocompile.exe %CFLAGS% %LFLAGS%
+clang autocompile.c ../slibs/src/slibs.c -o autocompile.exe %CFLAGS% %LFLAGS%
 
 popd 
 
