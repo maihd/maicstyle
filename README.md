@@ -2,11 +2,11 @@
 
 ## Notes
 
+- TLDR: Just learn and use Odin language. It's have the same mindset and features what I want.
 - I'm still learning and practicing for better as C/C++. Ideas and opinions may wrong.
 - Mai English is not good, if You find the typos, wrong words and wrong meanings, please help!
 - Some Mai projects will follow its own style (but not too different from this style) for special reasons. Ex: vectormath
 - I use other projects style guide for thoses projects. It help me learn the others, and new stuffs, why not?
-- Because I will use Zig and Beef for some future projects, each languages has its own styles, I will follow the style, but the heart of priciple will be same: Simply make the job done!
 - Based on the important of the section, I will bring it first the most important, last section is the least important.
 - Note: this project can be consider as a R&D for Mai personal work, you can find some ideas in `docs` folder.
 
@@ -14,6 +14,7 @@
 # Language can affect this style
 Language that mostly can use DoD approachs:
 - C/C++
+- Odin
 - Beef
 - Zig
 - C#
