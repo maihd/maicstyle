@@ -1,4 +1,9 @@
 # Examples data structures designing that use MaiCStyle to programming
+Guided for using and designing data structure. All come from other people and ideas.
+Inspired by:
+- Bitsquid Foundation library
+- OdinLang
+- Linux kernel codebase
 
 
 ## Building
