@@ -13,6 +13,7 @@ In special case, build scripts were provided.
 - [Data structure constructor in C11](/constructor)
 - [Designated initializer for C++ (gcc/clang)](/cpp_design_init)
 - [Defer execution to end of scope](/defer_and_scope)
+- [Defer for C++ (utilizing destructor)](/defer_cpp)
 - [Error handling](/error_handling)
 - [Fake properties with union combine with anonymous union/struct](/fake_properties)
 - [No stdlib, standalone, free runtime 1 (simple)](/free_runtime_1)

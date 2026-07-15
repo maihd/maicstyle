@@ -83,6 +83,7 @@ static void gc_sweep()
     }
 }
 
+
 void gc_collect() 
 {
     // In more complex systems, you'd walk object graph here

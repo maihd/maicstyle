@@ -9,7 +9,8 @@
 
 
 /// Solution 1: Guarantee valid reads (null pointers)
-
+/// For more example for how to handle node/list (instrusive data structure)
+/// read more from: https://felipec.github.io/good-taste/parts/1.html
 
 typedef struct Node
 {

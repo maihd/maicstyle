@@ -3,7 +3,7 @@ OUTPATH=$EXEDIR/cpp_defer
 
 # echo $EXEDIR
 
-clang++ $EXEDIR/main.cpp -o $OUTPATH
+clang++ $EXEDIR/main.cpp -o $OUTPATH -fno-exceptions -fno-unwind-tables -fno-rtti
 
 $OUTPATH
 

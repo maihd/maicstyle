@@ -7,6 +7,7 @@ All features and extensions that should use for MaiCStyle
 - Functional when logic are more important than performance
 - Sometime imperative make the job more easily
 - OOP have its place, but not everywhere
+- C++ come with some features that we will needed to make code more productivity and performance. But be careful!
 
 
 ## C standard and extensions
@@ -18,12 +19,15 @@ All features and extensions that should use for MaiCStyle
 ## C++ if needed
 - Prefer Orthodox C++ approachs
 - Keep simple and stupid
+- Avoid class and methods when your dont need it
 - Keep class hierarchy narrow
+- Avoid modules
 - Composite over inheritance
+- Simple template is good enough
 - Avoid template metaprogramming in most cases
 - Prefer mature language standards
     - Only C++11 is good enough
-    - Now C++17 is mature on common compilers
+    - Now C++20 is mature on common compilers
     - Take care of compiled code in new features
 - If statement with init-statement
 - Constexpr
@@ -32,6 +36,8 @@ All features and extensions that should use for MaiCStyle
 ## C++ Extensions (maybe used)
 - Designated initializer (required G++ or Clang++)
 - Compiler-depended attributes, modifiers
+- Be careful of Unwind tables too
+- Compiler flags: -fno-exceptions -fno-unwind-tables
 
 
 ## C++ avoid features
@@ -40,6 +46,7 @@ All features and extensions that should use for MaiCStyle
 - Deep and complex class inheritation hierarchy.
 - Interface for polymorphism over class.
 - No heavy OOP and design pattern, prefer data structure and algorithm. Simple implementation.
+- Compiler flags: -fno-rtti
 
 
 ## Extended Uniserval Keywords
