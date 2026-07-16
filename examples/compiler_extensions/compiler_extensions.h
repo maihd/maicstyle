@@ -33,20 +33,30 @@
 #endif
 
 
-/// __deprecated
-/// Uniserval compiler of __deperecated (Apple SDK)
-#if !defined(__deprecated)
+/// __lambda_inline
+/// Helpful when use lambda as custom code block
+#if !defined(__lambda_inline) && defined(__cplusplus)
 #if defined(_MSC_VER)
-#define __deprecated __declspec(deprecated)
+    // Check if MSVC is compiling with C++20 or newer
+    #if defined(_MSVC_LANG) && _MSVC_LANG >= 202002L
+        #define __lambda_inline [[msvc::forceinline]]
+    #else
+        // Pre-C++20 MSVC does not have a trailing lambda inline attribute.
+        // It expands to nothing, relying on global /O2 /Ob2 flags.
+        #define __lambda_inline
+    #endif
+#elif defined(__clang__) || defined(__GNUC__)
+    // Works perfectly on GCC/Clang across all modern C++ standards
+    #define __lambda_inline __attribute__((always_inline))
 #else
-#define __deprecated __attribute__((deprecated))
+    #define __lambda_inline
 #endif
 #endif
 
 
 /// __deprecated_msg
 /// Uniserval compiler of __deperecated_msg (Apple SDK)
-#if !defined(__deprecated)
+#if !defined(__deprecated_msg)
 #if defined(_MSC_VER)
 #define __deprecated_msg(msg) __declspec(deprecated(msg))
 #else
@@ -71,6 +81,7 @@
 #if !(defined(__cplusplus) || (__STDC_VERSION__ >= 202311L)) && !defined(nullptr)
 #define nullptr ((void*)0)
 #endif
+
 
 // -------------------------------------------------------------
 // C extensions that commonly use in C++
@@ -102,6 +113,7 @@
 #endif
 #endif
 
+
 // -------------------------------------------------------------
 // Get typename of a type
 // -------------------------------------------------------------
@@ -110,7 +122,7 @@
 /// Get name of type with help of C++ constexpr to make sure type is existed
 /// @spoiler(maihd): long definition
 #if !defined(__typename)
-#if !defined(__cplusplus) || defined(USE_FAST_TYPENAME)
+#if !defined(__cplusplus) || defined(USE_FAST_TYPENAME) || (!defined(_WIN32) && __cplusplus < 202302L)
 #define __typename(T) #T
 #else
 #define __typename(T) __typename_impl<T>()
@@ -236,6 +248,42 @@ constexpr auto __typename_GetTypeNameHelper()
     return result;
 }
 #endif
+#endif
+
+
+// -------------------------------------------------------------
+// Defer statement (only work on C++)
+// -------------------------------------------------------------
+
+#if defined(__cplusplus)
+/// __defer_call
+/// Zero-allocation
+/// Zero-overhead function call
+template <typename T>
+struct __defer_call
+{
+    T f;
+    
+    __forceinline __defer_call(const T& f) : f(f) {}
+    __forceinline ~__defer_call() { f(); }
+};
+
+/// __defer_help
+/// Helper to create __defer_call
+/// Final syntax of defer will be like
+///     defer {
+///     }; // Require ';' 
+struct __defer_help 
+{
+    template <typename T>
+    __defer_call<T> operator+(const T& f) { return __defer_call<T>(f); }
+};
+
+#define __DEFER_NAME_1(X)    __defer ## X
+#define __DEFER_NAME()       __DEFER_NAME_1(__LINE__)
+
+#define defer               const auto& __DEFER_NAME() = __defer_help{} + [&] __lambda_inline () -> void
+
 #endif
 
 // assert_type_is_memcopyable();
