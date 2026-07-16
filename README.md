@@ -1,8 +1,8 @@
 # MaiHD's C/C++ programming style
 
-## Notes
+## Disclaimer
 
-- TLDR: Just learn and use Odin language. It's have the same mindset and features what I want.
+- TLDR: Just learn and use Odin programming language. It have the same mindset and features what I want.
 - I'm still learning and practicing for better as C/C++. Ideas and opinions may wrong.
 - Mai English is not good, if You find the typos, wrong words and wrong meanings, please help!
 - Some Mai projects will follow its own style (but not too different from this style) for special reasons. Ex: vectormath
