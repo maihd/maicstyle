@@ -17,7 +17,9 @@ In special case, build scripts were provided.
 
 
 ## Common data structures
+- Buffer: fixed-size array, cannot resize
 - Array: buffer, count, capacity
+- Slice: buffer, count (commonly work as array view or string view)
 - Sparse set/array: array with holes/unused items
 - Vector: resizable array, best for dynamic usages, may cause problem in hot loops, should avoid to use it as huge containers
 - Huge array: sparse set + free list + handle lookup, avoid realloc (scaling to big when resizing)
@@ -32,11 +34,13 @@ In special case, build scripts were provided.
 ## Abstract data structures (from book)
 - Stack and queue: an abstractions of array or list for special use case, maybe use ring buffer to avoid dynamic memory allocations.
 - Tree: to manage inherit relations of data object, also implement-depend to choose array/list.
+- QuadTree or OctaTree: good for partition spacing use in physics and camera culling
 
 
 ## Caching data structures
 - Ring buffer: usually non-resizable, infinite circular loop for accessing items
 - LRU and MRU cached: implement with ring buffer, or queue
+- Free list or Pool: storing pre-allocated and or after free (avoid calling malloc/free which is slow)
 
 
 ## Memory access patterns
@@ -65,3 +69,4 @@ In special case, build scripts were provided.
 - Use huge array for system
 - Linked list and hash link for parsing data from text file (which linear allocator for acceptable cache friendly)
 - Array for bulk data, batch processing
+- Slice for passing data avoid

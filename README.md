@@ -79,15 +79,15 @@ Working on it.
 - Basically use C99 and C++11.
     - Update 5/6/2024: C11 (C17 just a fix bugs version of C11) and C++17 widely support now (MSCV, Clang, GCC). But without appreciate reasons, you should avoid thoses features.
     - Update 3/7/2025: C11 and C++20
-- Follow spririts of C, simple and easy to read.
+- Follow spirits of C, simple and easy to read.
 - `#pragma once` is widely supported now. Use it preferly to header guards.
 - Use unix encoding.
 - Content file only support ASCII. Donot use utf8 file format.
 - Prefer code that both compile on C and C++, especially on header files.
 - Some features can be support both on C and C++ with extensions, define a keyword with preprocessor.
-- Preprocessor is not bad. Duck typing is not bad. Un-tested code is bad. Write the code are needed to be written, test and proof that code work, are the good resolutions for thoses problems.
+- Preprocessor is not bad. Duck typing is not bad. Un-tested code is bad. Write the code are needed to be written, test and proof that code work, are the good resolutions for thoses problems. But preprocessor will make you hard to debugging the program, be careful!
 - Prefer clang (and family like zig cc) for toolchains, feel free to use extensions if project is clang-only.
-- Deep dive in [ProgLang.md](/ProgLang.md)
+- Deep dive in [ProgLang.md](/docs/ProgLang.md)
 
 
 ## Naming convention <a name="naming-convention" />
@@ -266,8 +266,9 @@ This section is a resources to other styles that help me through time, and it's 
 - [Orthodox C++](https://gist.github.com/bkaradzic/2e39896bc7d8c34e042b)
 - [idSoftware CodingConventions](https://fabiensanglard.net/fd_proxy/doom3/CodeStyleConventions.pdf) [Mirror](/docs/idCodeStyleConventions.pdf)
 - [John Carmack's inline code](http://number-none.com/blow/john_carmack_on_inlined_code.html)
+- [Casey Muratori's Compression Oriented Programming](https://caseymuratori.com/blog_0015)
 - [Insomniac's Coding Standard](https://gist.github.com/Kerollmops/fcad27cfef9e3552cb75a3d201494ba6)
 - [Lucas Sas's Modern C](https://www.youtube.com/watch?v=QpAhX-gsHMs)
 - [Eskil Steenberg's How I program C](https://www.youtube.com/watch?v=443UNeGrFoM&list=PLT6InxK-XQvOpYklsuSAcQ9zmVDClRX6x&index=1)
 - [Mordern C in BeefLang](https://github.com/maihd/FunWithBeef/blob/main/Essays/BeefForModernC/README.md)
-- https://github.com/zakirullin/cognitive-load
+- [Cognitive load for programming](https://github.com/zakirullin/cognitive-load)
