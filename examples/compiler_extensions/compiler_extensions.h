@@ -11,6 +11,10 @@
 // __default_init: support default initialization in C (actually no-ops, just to make C++ code compile with C compiler)
 // __typename: get typename of a type, in C use macro #, in C++ use __PRETTY_FUNCTION__ or __FUNCSIG__ with constexpr to get name
 
+// C++ extensions
+// __lambda_inline: force inlining for lambda (helpful for defer)
+// defer: defer block (Go, Odin, Zig), only work on C++
+
 // -------------------------------------------------------------
 // Function call conventions
 // -------------------------------------------------------------
@@ -29,7 +33,11 @@
 /// __forceinline
 /// Support __forceinline for non MSVC compiler
 #if !defined(_WIN32) && !defined(__forceinline)
+#if defined(__cplusplus)
+#   define __forceinline __attribute__((always_inline))
+#else
 #   define __forceinline static __attribute__((always_inline)) inline
+#endif
 #endif
 
 
@@ -122,7 +130,7 @@
 /// Get name of type with help of C++ constexpr to make sure type is existed
 /// @spoiler(maihd): long definition
 #if !defined(__typename)
-#if !defined(__cplusplus) || defined(USE_FAST_TYPENAME) || (!defined(_WIN32) && __cplusplus < 202302L)
+#if !defined(__cplusplus) || defined(USE_FAST_TYPENAME)
 #define __typename(T) #T
 #else
 #define __typename(T) __typename_impl<T>()
@@ -131,10 +139,15 @@ template <typename T>
 constexpr auto __typename_GetTypeNameHelper();
 
 template <typename T>
+struct __typename_cache
+{
+    static constexpr auto value = __typename_GetTypeNameHelper<T>();
+};
+
+template <typename T>
 constexpr const char* __typename_impl(void)
 {
-    static auto string = __typename_GetTypeNameHelper<T>();
-    return string.data;
+    return __typename_cache<T>::value.data;
 }
 
 template <typename T>
@@ -286,6 +299,7 @@ struct __defer_help
 
 #endif
 
+// Some assertion (type traits) I'm thinking it useful or not
 // assert_type_is_memcopyable();
 // assert_type_is_trivial();
 // assert_type_is_pod();
