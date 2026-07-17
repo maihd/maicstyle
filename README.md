@@ -2,13 +2,10 @@
 
 ## Disclaimer
 
-- TLDR: Just learn and use Odin programming language. It have the same mindset and features what I want.
+- TLDR: Just learn and use Odin programming language. It have the same mindset and features what I want. I encourage you to learn it!
 - I'm still learning and practicing for better as C/C++. Ideas and opinions may wrong.
 - Mai English is not good, if You find the typos, wrong words and wrong meanings, please help!
-- Some Mai projects will follow its own style (but not too different from this style) for special reasons. Ex: vectormath
-- I use other projects style guide for thoses projects. It help me learn the others, and new stuffs, why not?
-- Based on the important of the section, I will bring it first the most important, last section is the least important.
-- Note: this project can be consider as a R&D for Mai personal work, you can find some ideas in `docs` folder.
+- This repo can be consider as a R&D for Mai personal work, you can find some ideas in `docs/collections`/`examples` folder.
 
 
 # Language can affect this style
@@ -16,7 +13,6 @@ Language that mostly can use DoD approachs:
 - C/C++
 - Odin
 - Beef
-- Zig
 - C#
 - Lua flat procedural coding style (Hades, Bitsquid Games, ...)
 
@@ -26,52 +22,29 @@ Language that mostly can use DoD approachs:
 1. [Inventing on Principles](#inventing-on-principles)
 2. [Workflow](#workflow)
 3. [Programming Languages, Standards, Spirits](#proglang-standards-spirits)
-4. [Naming convention](#naming-convention)
-5. [Naming convention 2](#naming-convention-2)
-6. [Naming cheatsheet](#naming-cheatsheet)
-7. [Types](#types)
-8. [Scoping](#scoping)
-9. [File layout](#file-layout)
-10. [Project architecture](#project-architecture)
-11. [Build system](#build-system)
-12. [Tooling](#tooling)
-13. [License](#license)
-14. [Additional Resources](#additional-resources)
+4. [Naming conventions](#naming-conventions)
+5. [Types](#types)
+6. [Scoping](#scoping)
+7. [File layout](#file-layout)
+8. [Project architecture](#project-architecture)
+9. [Build system](#build-system)
+10. [Tooling](#tooling)
+11. [Additional Resources](#additional-resources)
 
 
 ## Inventing on Principles <a name="inventing-on-principles" />
 
 - Do what matter to get the job done!
-- Immediate feedback
+- Immediate feedback, iterations is king.
 - What you see is what you get: WYSIWYG
-- Simple, open, immediate, low level, debug/discipline
-    - The new SOLID principles
-    - Keep it simple and small, for product
-    - Keep it slow and steady, for development product
-    - Open mind to the problem
-    - Open data for the program to do what it needs to do
-    - Open source for people
-    - Open the black box practice
-    - Immediate feedback, also know as low-latency iterations
-    - Inventing on principles (recursive until there are no principles needed)
-    - Incrementally development
-    - Imperfectism
-    - Low level for abstractions
-    - Love and passion
-    - Learn the hard way
-    - Debug easily, focus on development, and use better tools
-    - Discipline, donot break the rules of the project (each project have each own rules)
-    - All principles support each others
-- Self-reliance, mindfulness
-    - "What I cannot create, I cannot understand" - Richard Feynman
-    - First, use it; second, attempt to create it with simple implementation; third, use it better
-    - Stay focused on the project, and the project only, right now!
+- SOLID: Simple, open, low level and learn the hard way, immediate, debug/discipline
+- Self-reliance, mindfulness: Stay focused on the project, and the project only, right now!
+- "What I cannot create, I cannot understand" - Richard Feynman
 - Zen creating & living!
 
 
 ## Workflow <a name="workflow" />
-
-Working on it.
+Working on it. But follow above principles.
 
 
 ## Programming Languages, Standards, Spirits <a name="proglang-standards-spirits" />
@@ -79,8 +52,8 @@ Working on it.
 - Basically use C99 and C++11.
     - Update 5/6/2024: C11 (C17 just a fix bugs version of C11) and C++17 widely support now (MSCV, Clang, GCC). But without appreciate reasons, you should avoid thoses features.
     - Update 3/7/2025: C11 and C++20
-- Follow spirits of C, simple and easy to read.
-- `#pragma once` is widely supported now. Use it preferly to header guards.
+- Follow spirits of C, simple and easy to read. Joy of programming.
+- `#pragma once` is widely supported now. Use it preferly over header guards.
 - Use unix encoding.
 - Content file only support ASCII. Donot use utf8 file format.
 - Prefer code that both compile on C and C++, especially on header files.
@@ -90,47 +63,8 @@ Working on it.
 - Deep dive in [ProgLang.md](/docs/ProgLang.md)
 
 
-## Naming convention <a name="naming-convention" />
-Please know that naming convention in C/C++ is not forcing in variant type of projects. Mean that naming for readable more important than conventions.
-- Typename: `PascalCase`. Ex: `Texture`, `Shader`, `Image`, ...
-- Function name: `PascalCase`, `ModuleName_FunctionName`. Ex: `ArrayPush`, `Texture_New`, ...
-- Enums, constants: `ALL_CAPS_CASE`. Ex: `PI`, `NULL`, `PIXEL_RGBA`, ...
-- Enums only: `TypeName_MemberName`. Ex: `JsonError_OutOfMemory`, `FileAccess_ReadWrite`, ...
-- Variables, fields, paramaters: `camelCase`. Ex: `texture.width`, `texture.height`, ...
-- Custom keywords: `__snake_case`. Ex: `__enum_type`, `__default_init`, `__defer`, `__typename`, `__scope`, ...
-- Reuse keywords instead of define new: `constexpr`, `__forceinline`, `alignas`, `alignof`, `offsetof`, `container_of`, `__vectorcall`, ...
-
-
-## Naming convention 2 <a name="naming-convention-2" />
-This convention is more common in C/C++. So I accept this.
-- Typename: `PascalCase`. Ex: `Texture`, `Shader`, `Image`, ...
-- Module name: `snake_case`. Ex: `vec2`, `mat4`, ...
-- Function name: `snake_case`, `module_name_function_name`. Ex: `array_push`, `texture_new`, ...
-- Enums, constants: `ALL_CAPS_CASE`. Ex: `PI`, `NULL`, `PIXEL_RGBA`, ...
-- Enums only: `TypeName_MemberName`. Ex: `JsonError_OutOfMemory`, `FileAccess_ReadWrite`, ...
-- Variables, fields, paramaters: `snake_case`. Ex: `texture.width`, `texture.height`, ...
-- Custom keywords: `__snake_case`. Ex: `__enum_type`, `__default_init`, `__defer`, `__typename`, `__scope`, ...
-- Reuse keywords instead of define new: `constexpr`, `__forceinline`, `alignas`, `alignof`, `offsetof`, `container_of`, `__vectorcall`, ...
-
-
-## Naming convention 3 <a name="naming-convention-3" />
-This convention is famous for standard C and commonly in embedding programming world.
-- Typename: `snake_case_t`. Ex: `size_t`, `int32_t`, `gpio_t`, ...
-- Module name: `snake_case`. Ex: `gpio`, ...
-- Function name: `snake_case`, `module_name_function_name`. Ex: `gpio_`, ...
-- Enums, constants: `ALL_CAPS_CASE`. Ex: `PI`, `NULL`, `PIXEL_RGBA`, ...
-- Enums only: `TypeName_MemberName`. Ex: `JsonError_OutOfMemory`, `FileAccess_ReadWrite`, ...
-- Variables, fields, paramaters: `snake_case`. Ex: `texture.width`, `texture.height`, ...
-- Custom keywords: `__snake_case`. Ex: `__enum_type`, `__default_init`, `__defer`, `__typename`, `__scope`, ...
-- Reuse keywords instead of define new: `constexpr`, `__forceinline`, `alignas`, `alignof`, `offsetof`, `container_of`, `__vectorcall`, ...
-
-
-## Naming cheatsheet <a name ="naming-cheatsheet" />
-This section need a database, because naming is enormous and must have only one meaning.
-- Init/Deinit: for initialization/deinitialization, no return pointer
-- Create/Destroy: create new memory, init/deinit, and return pointer (object)
-- Alloc/Free: actually request memory from system
-- Acquire/Release: get memory (also resources) from a buffer/arena/allocator (not return to system when call release)
+## Naming conventions <a name="naming-conventions" />
+See [NAMING.md](/docs/NAMING.md)
 
 
 ## Types <a name="types" />
@@ -146,8 +80,8 @@ This section need a database, because naming is enormous and must have only one 
 
 - `float` prefer to `double`, only use `double` when needed.
 - (C only) Generic types: `Array(T)`, `Buffer(T)`, `HashTable(T)`. Avoid `T*` for multiple values. Should add prefix `T`.
-- `T*` mean pass-by-reference, it mustnot be `NULL`.
-- Use value semantic, pass-by-value. For performance reason, make sure use const to prevent evil work on data structures.
+- `T*` mean pass-by-reference, it mustnot be `NULL`. In C++, we have pass-by-reference, use it.
+- Use value semantic, pass-by-value. For performance reason, make sure use const reference/pointer to prevent evil work on data structures.
 - Typedef struct, enum, union. Prefer explicit aligned data structures.
     ```C
     typedef struct ALIGNAS(vec3, 16) // ALIGNAS is crossplatform of __declspec(align)
@@ -182,7 +116,7 @@ This section need a database, because naming is enormous and must have only one 
 
 ## Scoping <a name="scoping" />
 
-- Single `{` `}` in one line, add newline after it.
+- Single `{`/`}` in one line, add newline after it.
 - But all definition of macro when have multiple lines.
 
 
@@ -230,12 +164,12 @@ This section need a database, because naming is enormous and must have only one 
 
 ## Build system <a name="build-system" />
 
-- Prefer premake over cmake
-- But knowing cmake can be help
-- Base knowlege of gmake/VisualStudio always needed
-- Some incremental build systems like: ninja, FASTBuild,... Should only use when needed
-- gmake maybe best fit for many projects, counting cross-platforms
-- Sometime build.bat is all I need
+- CMake is default choice for many platforms.
+- Base knowlege of gmake/VisualStudio always needed.
+- Some incremental build systems like: Ninja, FASTBuild,... Help your iterations, CMake help working with Ninja flawless.
+- gmake maybe best fit for many projects, counting cross-platforms.
+- Sometime `build.bat`/`build.sh` is all I need.
+- Sometime Premake/GENie help me faster in prototype build system.
 
 
 ## Tooling (helpful and need to learn) <a name="tooling" />
@@ -255,13 +189,7 @@ This section need a database, because naming is enormous and must have only one 
 - Visual Studio and helpers (not only compiler and code editor part)
 
 
-## License <a name="license" />
-
-Why you need a license for coding style. Copyright MaiHD @ Heart and Head.
-
-
 ## Additional Resources <a name="additional-resources" />
-
 This section is a resources to other styles that help me through time, and it's worth to findout. It's also proved production-ready, inuse by many products, companies. (You will find its' gamedev-oriented).
 - [Orthodox C++](https://gist.github.com/bkaradzic/2e39896bc7d8c34e042b)
 - [idSoftware CodingConventions](https://fabiensanglard.net/fd_proxy/doom3/CodeStyleConventions.pdf) [Mirror](/docs/idCodeStyleConventions.pdf)
@@ -270,5 +198,5 @@ This section is a resources to other styles that help me through time, and it's 
 - [Insomniac's Coding Standard](https://gist.github.com/Kerollmops/fcad27cfef9e3552cb75a3d201494ba6)
 - [Lucas Sas's Modern C](https://www.youtube.com/watch?v=QpAhX-gsHMs)
 - [Eskil Steenberg's How I program C](https://www.youtube.com/watch?v=443UNeGrFoM&list=PLT6InxK-XQvOpYklsuSAcQ9zmVDClRX6x&index=1)
-- [Mordern C in BeefLang](https://github.com/maihd/FunWithBeef/blob/main/Essays/BeefForModernC/README.md)
 - [Cognitive load for programming](https://github.com/zakirullin/cognitive-load)
+- [Mordern C in BeefLang](https://github.com/maihd/FunWithBeef/blob/main/Essays/BeefForModernC/README.md)

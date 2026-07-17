@@ -1,13 +1,15 @@
 # C/C++ Programming language definitons
-All features and extensions that should use for MaiCStyle
+All features and extensions that should use for MaiCStyle. Forming C/C++ into a dialect.
 
 ## Paradigms
 - Make the job done
+- Joy of programming and effortless coding
 - Yolo coding from the start, you dont know the future, so should not always plan ahead (but experiences and knowledges can help avoid some bad futures)
 - Functional when logic are more important than performance
 - Sometime imperative make the job more easily
 - OOP have its place, but not everywhere
 - C++ come with some features that we will needed to make code more productivity and performance. But be careful!
+- Features and coding patterns inspired from Odin (both languages and compiler source code)
 
 
 ## C standard and extensions
@@ -62,6 +64,7 @@ See details in example/compiler_extenions
 - `__typename`
 - `__deprecated`
 - `__deprecated_msg`
+- `defer`
 
 
 # Combine C/C++ 
