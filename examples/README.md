@@ -6,6 +6,7 @@ In special case, build scripts were provided.
 
 ## Contents
 - [Avoid Error](/avoid_error)
+- [Odin's bit_set](/bit_set)
 - [Chunk](/chunk)
 - [Compiler Extensions](/compiler_extensions)
 - [Compute hash as compile-time with preprocessor](/const_hash_preprocessor)
