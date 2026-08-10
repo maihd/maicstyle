@@ -1,6 +1,7 @@
 # C/C++ Programming language definitons
 All features and extensions that should use for MaiCStyle. Forming C/C++ into a dialect.
 
+
 ## Paradigms
 - Make the job done
 - Joy of programming and effortless coding
@@ -39,7 +40,7 @@ All features and extensions that should use for MaiCStyle. Forming C/C++ into a 
 - Designated initializer (required G++ or Clang++)
 - Compiler-depended attributes, modifiers
 - Be careful of Unwind tables too
-- Compiler flags: -fno-exceptions -fno-unwind-tables
+- Compiler flags: `-fno-exceptions -fno-unwind-tables`
 
 
 ## C++ avoid features
@@ -67,6 +68,7 @@ See details in example/compiler_extenions
 - `defer`
 
 
-# Combine C/C++ 
+## Combine C/C++ 
 Combine C/C++ with clang compiler to form a good language with some ergonomic features for productivity.
 One of showcase are Mai Vectormath library use this form of language to make API more ergonomic.
+I called this proC++ (Procedural Programming C++).
