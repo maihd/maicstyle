@@ -5,10 +5,8 @@ All features and extensions that should use for MaiCStyle. Forming C/C++ into a 
 ## Paradigms
 - Make the job done
 - Joy of programming and effortless coding
-- Yolo coding from the start, you dont know the future, so should not always plan ahead (but experiences and knowledges can help avoid some bad futures)
-- Functional when logic are more important than performance
-- Sometime imperative make the job more easily
-- OOP have its place, but not everywhere
+- Procedural programming by default
+- OOP have its place, but not everywhere. Sometime you just need interfaces, dynamic dispatch, not class and inheritation.
 - C++ come with some features that we will needed to make code more productivity and performance. But be careful!
 - Features and coding patterns inspired from Odin (both languages and compiler source code)
 
@@ -40,7 +38,7 @@ All features and extensions that should use for MaiCStyle. Forming C/C++ into a 
 - Designated initializer (required G++ or Clang++)
 - Compiler-depended attributes, modifiers
 - Be careful of Unwind tables too
-- Compiler flags: `-fno-exceptions -fno-unwind-tables`
+- Compiler flags: ``
 
 
 ## C++ avoid features
@@ -49,7 +47,7 @@ All features and extensions that should use for MaiCStyle. Forming C/C++ into a 
 - Deep and complex class inheritation hierarchy.
 - Interface for polymorphism over class.
 - No heavy OOP and design pattern, prefer data structure and algorithm. Simple implementation.
-- Compiler flags: -fno-rtti
+- Compiler flags: `-fno-rtti -fno-exceptions -fno-unwind-tables`
 
 
 ## Extended Uniserval Keywords

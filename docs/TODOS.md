@@ -1,5 +1,5 @@
 # List of things todos
-- Practice templates: oneshot program to write in 30 minutes - 1 hour, and remove after that
+- Practice templates: oneshot program to write in 30 minutes - 1 hour, and remove after that. This is required one simple runtime or atleast library.
 
 - Advanced coding techniques:
     - Code path flow
@@ -11,7 +11,7 @@
 
 - Complete exercises
 - Create tools to demonstrate the ideas that worked
-- API design guide lines, which is the best of how programming style should help
+- API design guidelines, which is the best of how programming style should help
 
 - Linked List vs Array performance benchmarks
     - Deep dive into implemenetation
@@ -26,3 +26,5 @@
     [OS] -> [OS SDK] -> [C/C++ Libraries] -> [C/C++ Framework/Core] -> [Odin/Other languages (optional)]
                                                                     -> [Scripting Language (optional)]
     ```
+    - In the last layer (we called its high-level layer), if they are compiled languages, they should compiled as freestanding, its mean they are only depends on [C/C++ Framework/Core]
+    - This architecture is for serious cross-platform production software (game)

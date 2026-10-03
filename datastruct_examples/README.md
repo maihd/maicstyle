@@ -21,8 +21,10 @@ In special case, build scripts were provided.
 - Array: buffer, count, capacity
 - Slice: buffer, count (commonly work as array view or string view)
 - Sparse set/array: array with holes/unused items
-- Vector: resizable array, best for dynamic usages, may cause problem in hot loops, should avoid to use it as huge containers
+- Vector/DynArray: resizable array, best for dynamic usages, may cause problem in hot loops, should avoid to use it as huge containers
+- Fixed capacity vector: no resizable, but have count.
 - Huge array: sparse set + free list + handle lookup, avoid realloc (scaling to big when resizing)
+- Handle map: one solution for huge array problems.
 - Linked list: first node, each node have store a data to access next node (maybe one of pointer, index, offset, handle)
 - Free list: like linked list, for fast lookup unused items, but more lightweight, some time just use small data type (uint16, uint32) for index or offset of unused items
 - Lookup array: simple array store index/offset for spareset array
@@ -32,7 +34,10 @@ In special case, build scripts were provided.
 
 
 ## Abstract data structures (from book)
-- Stack and queue: an abstractions of array or list for special use case, maybe use ring buffer to avoid dynamic memory allocations.
+- Stack and queue: an abstractions of array or list for special use case, maybe use ring buffer to avoid dynamic memory allocations. Or just simply an array, push/enqueue and clear after done:
+    - If push/pop oftenly: array or list is naturely worked
+    - If enqueue/dequeue oftenly: use ring buffer backed with array/list
+    - If data only live in one frame (short live): clear_all after done
 - Tree: to manage inherit relations of data object, also implement-depend to choose array/list.
 - QuadTree or OctaTree: good for partition spacing use in physics and camera culling
 
@@ -48,9 +53,16 @@ In special case, build scripts were provided.
 - Pointer: address to memory
 - Index: offset from first item of array, with the help of the compiler to calculate pointer address
 - Handle: ganeration + index, for weak reference, still fast lookup with extra step of checking generation, may cause generations collision in frequently create/destroy loop
-- Hash: numbeer present of the result after hashing a block of data (iterate all items, each item is hashed and combine to the results), good for lookup in complex storage
+- Hash: number present of the result after hashing a block of data (iterate all items, each item is hashed and combine to the results), good for lookup in complex storage
 - Id: a data to present identify of data object. In runtime, use hash or handle are good enough. In persistent, real world data object, guid or uuid solve this problem
 - Name: a human readable identify of data object, should store as string
+- StringId: a human readable identify, store as hash, in debug mode can store presented string
+
+
+## Pointer, Index, Handle
+- Pointer: direct access, unsafe, no lifetime, maybe dangling, non-serializable. Fastest (in theory).
+- Index: indirect access, more safe but no lifetime, maybe dangling, serializable. Slower than pointer (in theory).
+- Handle: indirect access, more safe, lifetime, no dangling, serializable. Slower than index (in theory).
 
 
 ## Compare Id and hash/handle
@@ -62,11 +74,18 @@ In special case, build scripts were provided.
 ## Compare Id and Name
 - Id: not human readable, given by the system
 - Name: human readable, given by human
+- StringId: human readable, but fast as runtime, usually place in code
 
 
 ## Suggestions
-- Should avoid contain container into data object
+- Should avoid contain container into data object (thing, entity, actor)
 - Use huge array for system
 - Linked list and hash link for parsing data from text file (which linear allocator for acceptable cache friendly)
 - Array for bulk data, batch processing
-- Slice for passing data avoid
+- Slice for passing data around
+
+
+## More complex data structures
+I usually done touch theses data structures:
+- Bounding Volume Hierarchy (BVH), commonly use in high performance system. Like physics and graphics.
+- Binary space partition (BSP), famous in Doom 1.

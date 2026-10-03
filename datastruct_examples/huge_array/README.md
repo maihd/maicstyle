@@ -1,5 +1,6 @@
 # Huge array
 Huge amount of items container for system for fast iterations without overhead of resizing.
+Also called Handle_Map.
 
 
 ## Solutions
@@ -13,3 +14,5 @@ Huge amount of items container for system for fast iterations without overhead o
 ## Reading resources
 - [Bitsquid ID Lookup Table](https://bitsquid.blogspot.com/2011/09/managing-decoupling-part-4-id-lookup.html)
 - [Our Machinery Virtual Memory Tricks](https://ruby0x1.github.io/machinery_blog_archive/post/virtual-memory-tricks/index.html)
+- [Handle-based maps](https://zylinski.se/posts/handle-based-maps-three-implementations/)
+- [Handle are the better pointers](https://floooh.github.io/2018/06/17/handles-vs-pointers.html)

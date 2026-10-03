@@ -79,7 +79,8 @@ See [NAMING.md](/docs/NAMING.md)
     + `int` and familiar is prefer because this help compiler do optimization. (rarely use, only helpful for uncommon platforms)
 
 - `float` prefer to `double`, only use `double` when needed.
-- (C only) Generic types: `Array(T)`, `Buffer(T)`, `HashTable(T)`. Avoid `T*` for multiple values. Should add prefix `T`.
+- (C only) Generic types: `Array(T)`, `Buffer(T)`, `HashTable(T)`. Avoid `T*` for multiple values pointer. Should add prefix `T`.
+- `T[]` in parameter type prefer to array (Odin multi pointers).
 - `T*` mean pass-by-reference, it mustnot be `NULL`. In C++, we have pass-by-reference, use it.
 - Use value semantic, pass-by-value. For performance reason, make sure use const reference/pointer to prevent evil work on data structures.
 - Typedef struct, enum, union. Prefer explicit aligned data structures.
@@ -91,14 +92,16 @@ See [NAMING.md](/docs/NAMING.md)
 
     typedef enum WindowFlags
     {
-        ...
+        WindowFlags_None,
+        WindowFlags_Visible = 1 << 0,
+        WindowFlags_Default = WindowFlags_Visisble,
     } WindowFlags;
 
-    typedef union Handle
+    typedef union SysHandle
     {
         void*       onWindows;
         uint64_t    onUnix;
-    } Handle;
+    } SysHandle;
     ```
 
 - Plain-old data prefer to C++ struct.
@@ -115,7 +118,7 @@ See [NAMING.md](/docs/NAMING.md)
 
 
 ## Scoping <a name="scoping" />
-
+Use Allman bracing.
 - Single `{`/`}` in one line, add newline after it.
 - But all definition of macro when have multiple lines.
 
@@ -178,11 +181,11 @@ See [NAMING.md](/docs/NAMING.md)
 - Clang Static Analyzer
 - Clang Format
 - Clang Tidy
-- Clang AST dump (for bindgen and preprocessing)
+- Clang AST dump (for bindgen and preprocessing, RTTI)
 - Undefined behavior sanitizer (all compilers)
 - Memory sanitizer (all compilers)
 - Thread sanitizer?
-- Tracy Profiler
+- Tracy Profiler or Spall Profiler
 - Platform's native profiler
 - VSCode clangd (LSP for coding C/C++ with VSCode, better than VSCode Intellisense, also support swizzle syntax for vector primitives)
     - Note (11/03/2024): clangd is extremely using too much resources (RAM, CPU) when project have large header files (commonly with single header file libraries)
