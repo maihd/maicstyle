@@ -17,8 +17,7 @@ In special case, build scripts were provided.
 
 
 ## Common data structures
-- Buffer: fixed-size array, cannot resize
-- Array: buffer, count, capacity
+- Array: fixed-size, can be known as compile-time
 - Slice: buffer, count (commonly work as array view or string view)
 - Sparse set/array: array with holes/unused items
 - Vector/DynArray: resizable array, best for dynamic usages, may cause problem in hot loops, should avoid to use it as huge containers
@@ -70,6 +69,65 @@ In special case, build scripts were provided.
 - Hash: depend on data. Data changed, hash changed.
 - Handle: depend on storage, given when add item to storage.
 
+## Things
+- A thing can be anythings: Entity, Actor, UI Widget
+- Fixed size struct, only contains dump fields
+- Trivial copyable
+- Should have no pointer, only use indirect reference
+```C++
+enum class ThingKind : uint32_t // no need uint8_t or uint16_t, saved 2 or 3 bytes is not worth
+{
+    None,
+    Player,
+    Enemy_Goblin,
+    Enemy_Orc,
+
+    // If you do UI 
+    UI_Button,
+    UI_Text,
+    UI_Slider,
+};
+
+enum ThingFlags : uint32_t // Fast turning on/off features/behaviours of Kind. Use uint64_t of BitSet if your required bigger set
+{
+    ThingFlags_None,
+    // ThingFlags_Movable   = 1 << 0,
+    // ThingFlags_AI_Input  = 1 << 1,
+    // Blah blah
+};
+
+struct ThingHandle
+{
+    int32_t index;
+    int32_t generation;
+};
+
+struct alignas(64) Thing // Cacheline commonly have size of 64 byte
+{
+    // Header
+    ThingKind kind;             // offset 0
+    ThingFlags flags;           // offset 4
+
+    // Properties
+    vec3 position;              // offset 8
+    quat rotation;              // offset 24 (vec3 is simd)
+    vec3 scale;                 // offset 40
+
+    // Relationship
+    ThingHandle parent;         // offset 56
+    ThingHandle firstChild;     // offset 64
+    ThingHandle lastChild;      // offset 72
+    ThingHandle nextSibling;    // offset 80 
+    ThingHandle prevSibling;    // offset 88
+
+    // Padding, good for hot reloading, serialization
+    char padding[160];          // offset 96
+};
+
+// You should control your thing size, 1KB is not too big
+// Commonly 256 is big enough for most cases
+static_assert(size_of(Thing) == 160, "Thing size is wrong"); 
+```
 
 ## Compare Id and Name
 - Id: not human readable, given by the system

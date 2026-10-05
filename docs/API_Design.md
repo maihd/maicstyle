@@ -1,6 +1,6 @@
 # API design for procedural code
 
-## Large array of Things
+## Large Arrays of Things
 - Thing is PoD, fixed size, contains no dynamic data
 - Things is container of Thing, define custom access pattern, processing, ...
 - Thing can index of parent, first child, last child, next sibling, prev sibling for hierarchy.
