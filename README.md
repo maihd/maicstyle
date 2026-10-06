@@ -167,16 +167,22 @@ Use Allman bracing.
 
 ## Build system <a name="build-system" />
 
+Indie and personal choices:
+- Most program is just need Unity build. Amalgamation is like unity build but for single header libraries. 
+- If your program or library need build systems, usually mean this is too complex, heavy bloated of deps.
+- `build.bat`/`build.sh` is all I need.
+
+Standard and industry choices:
 - CMake is default choice for many platforms.
-- Base knowlege of gmake/VisualStudio always needed.
+- Base knowledges of gmake/VisualStudio always needed.
 - Some incremental build systems like: Ninja, FASTBuild,... Help your iterations, CMake help working with Ninja flawless.
 - gmake maybe best fit for many projects, counting cross-platforms.
-- Sometime `build.bat`/`build.sh` is all I need.
 - Sometime Premake/GENie help me faster in prototype build system.
 
 
 ## Tooling (helpful and need to learn) <a name="tooling" />
 
+- TinyCC for day-to-day C practices
 - Clang and LLVM, and families
 - Clang Static Analyzer
 - Clang Format
@@ -190,6 +196,7 @@ Use Allman bracing.
 - VSCode clangd (LSP for coding C/C++ with VSCode, better than VSCode Intellisense, also support swizzle syntax for vector primitives)
     - Note (11/03/2024): clangd is extremely using too much resources (RAM, CPU) when project have large header files (commonly with single header file libraries)
 - Visual Studio and helpers (not only compiler and code editor part)
+- RadDebugger
 
 
 ## Additional Resources <a name="additional-resources" />
