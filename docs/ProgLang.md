@@ -17,6 +17,12 @@ All features and extensions that should use for MaiCStyle. Forming C/C++ into a 
 - C2x never used
 
 
+## C features that I avoid
+- Increment and decrement, use `+=`/`-=` instead. In seperated line.
+- Too much global state. If use global state, it's much reasonable. The most cases is library have its global state.
+- Pointer for everything, if useful, but have drawbacks, and have other solution fit better. Like handle. Same usage of weak pointer.
+
+
 ## C++ if needed
 - Prefer Orthodox C++ approachs
 - Keep simple and stupid
@@ -66,7 +72,7 @@ See details in example/compiler_extenions
 - `defer`
 
 
-## Combine C/C++ 
+## Combine C/C++
 Combine C/C++ with clang compiler to form a good language with some ergonomic features for productivity.
 One of showcase are Mai Vectormath library use this form of language to make API more ergonomic.
 I called this proC++ (Procedural Programming C++).

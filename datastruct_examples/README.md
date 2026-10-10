@@ -62,7 +62,8 @@ In special case, build scripts were provided.
 - Pointer: direct access, unsafe, no lifetime, maybe dangling, non-serializable. Fastest (in theory).
 - Index: indirect access, more safe but no lifetime, maybe dangling, serializable. Slower than pointer (in theory).
 - Handle: indirect access, more safe, lifetime, no dangling, serializable. Slower than index (in theory).
-
+> It's common use idx as naming index, but we can go further, use Idx as extended index, which mean by default Idx is handle.
+> And vice versa, handle is extended index. You can assume that if you like word-play.
 
 ## Compare Id and hash/handle
 - Id: does not change when data change, storage change. Id are given when creation. Persistent until destroy data object.
@@ -82,7 +83,7 @@ enum class ThingKind : uint32_t // no need uint8_t or uint16_t, saved 2 or 3 byt
     Enemy_Goblin,
     Enemy_Orc,
 
-    // If you do UI 
+    // If you do UI
     UI_Button,
     UI_Text,
     UI_Slider,
@@ -117,7 +118,7 @@ struct alignas(64) Thing // Cacheline commonly have size of 64 byte
     ThingHandle parent;         // offset 56
     ThingHandle firstChild;     // offset 64
     ThingHandle lastChild;      // offset 72
-    ThingHandle nextSibling;    // offset 80 
+    ThingHandle nextSibling;    // offset 80
     ThingHandle prevSibling;    // offset 88
 
     // Padding, good for hot reloading, serialization
@@ -126,7 +127,7 @@ struct alignas(64) Thing // Cacheline commonly have size of 64 byte
 
 // You should control your thing size, 1KB is not too big
 // Commonly 256 is big enough for most cases
-static_assert(size_of(Thing) == 160, "Thing size is wrong"); 
+static_assert(size_of(Thing) == 160, "Thing size is wrong");
 ```
 
 ## Compare Id and Name
