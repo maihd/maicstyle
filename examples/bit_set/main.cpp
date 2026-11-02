@@ -1,76 +1,97 @@
 #include <stdio.h>
 
 
-// Simple and lightweight std::initialize_list
-namespace std 
+// Simple and lightweight std::initializer_list
+namespace std
 {
-    template<class E>
-    struct initializer_list 
+    template<typename E>
+    struct initializer_list
     {
-        const E* start_ptr;
-        size_t   list_size;
-
-        initializer_list() : start_ptr(nullptr), list_size(0) {}
-        initializer_list(const E* ptr, size_t sz) : start_ptr(ptr), list_size(sz) {}
-
-        size_t size() const { return list_size; }
-        const E* begin() const { return start_ptr; }
-        const E* end() const { return start_ptr + list_size; }
+        const E*    data;
+        size_t      len;
     };
 }
 
+// Readonly slice, can have syntax sugar from compiler like { 1, 2, 3 }
+template <typename E>
+using InitList = std::initializer_list<E>;
 
-// Odin bit_set
-template <typename Enum, typename Storage = int>
-struct Bit_Set
+// Odin's bit_set
+template <typename TEnum, typename TStorage = int>
+struct BitSet
 {
-    Storage bits;
+    static_assert(__is_enum(TEnum), "TEnum must be a enum type");
+    static_assert(__is_integral(TStorage), "TStorage must be a integer type");
 
-
-    constexpr Bit_Set() : bits(0) {}
-    constexpr Bit_Set(Storage bits) : bits(bits) {}
-    constexpr Bit_Set(Enum enum_value) : bits(1 << enum_value) {}
-    constexpr Bit_Set(std::initializer_list<Enum> enum_values)
-    {
-        for (const auto e : enum_values)
-        {
-            bits |= 1 << (Storage)e;
-        }
-    }
-
-
-    constexpr Storage operator&(Enum enum_value)
-    {
-        return bits & (1 << (Storage)enum_value);
-    }
-
-    // Add more operators here
+    TStorage bits;
 };
 
-
-// Bit_Set is required to be trivially copyable (or so called blitable data type)
-enum __Enum_For_Static_Assert {};
-static_assert(__is_trivially_copyable(Bit_Set<__Enum_For_Static_Assert, int>), "Bit_Set must be PoD-like");
-static_assert(__is_trivially_copyable(std::initializer_list<__Enum_For_Static_Assert>), "std::initializer_list must be PoD-like");
-
-
-enum class File_Mode
+template <typename TEnum, typename TStorage = int>
+consteval BitSet<TEnum, TStorage> MakeBitSet(InitList<TEnum> enum_values)
 {
-    Read,
-    Write,
+    BitSet<TEnum, TStorage> res = { 0 };
+    for (int i = 0; i < enum_values.len; i += 1)
+    {
+        TEnum e = enum_values.data[i];
+        res.bits |= 1 << (TStorage)e;
+    }
+    return res;
+}
+
+template <typename TEnum, typename TStorage = int>
+constexpr BitSet<TEnum, TStorage> operator&(BitSet<TEnum, TStorage> bitset, TEnum enum_value)
+{
+    return {bitset.bits & (1 << (TStorage)enum_value)};
+}
+
+template <typename TEnum, typename TStorage = int>
+constexpr BitSet<TEnum, TStorage> operator|(BitSet<TEnum, TStorage> bitset, TEnum enum_value)
+{
+    return {bitset.bits | (1 << (TStorage)enum_value)};
+}
+
+template <typename TEnum, typename TStorage = int>
+constexpr bool HasFlags(BitSet<TEnum, TStorage> bitset, TEnum enum_value)
+{
+    return bitset.bits & (1 << (TStorage)enum_value);
+}
+
+template <typename TEnum, typename TStorage = int>
+constexpr bool HasFlags(BitSet<TEnum, TStorage> bitset, InitList<TEnum> enum_values)
+{
+    return bitset.bits & MakeBitSet<TEnum, TStorage>(enum_values).bits;
+}
+
+template <typename TEnum, typename TStorage = int, typename TStorage2 = int>
+constexpr bool HasFlags(BitSet<TEnum, TStorage> a, BitSet<TEnum, TStorage2> b)
+{
+    return a.bits & (TStorage)b.bits;
+}
+
+#define DEFINE_BITSET(Name, ...)                                        \
+    typedef BitSet<__VA_ARGS__> Name;                                   \
+    consteval FileModes Make ## Name(InitList<__VA_ARGS__> enum_values) \
+    {                                                                   \
+        return MakeBitSet<__VA_ARGS__>(enum_values);                    \
+    }
+
+// Example code
+
+enum FileMode
+{
+    FileMode_Read,
+    FileMode_Write,
 };
 
-
-typedef Bit_Set<File_Mode> File_Modes;
-
+DEFINE_BITSET(FileModes, FileMode);
 
 int main()
 {
-    auto file_modes = File_Modes{ File_Mode::Read, File_Mode::Write };
+    auto file_modes = MakeFileModes({ FileMode_Read, FileMode_Write });
 
     printf("file_modes: %d\n", file_modes.bits);
-    printf("file_modes has File_Mode::Read: %s\n", (file_modes & File_Mode::Read) ? "true" : "false");
-    printf("file_modes has File_Mode::Write: %s\n", (file_modes & File_Mode::Write) ? "true" : "false");
+    printf("file_modes has FileMode_Read: %s\n", HasFlags(file_modes, FileMode_Read) ? "true" : "false");
+    printf("file_modes has FileMode_Write: %s\n", HasFlags(file_modes, FileMode_Write) ? "true" : "false");
 }
 
 //! EOF

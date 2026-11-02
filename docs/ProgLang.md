@@ -36,6 +36,7 @@ All features and extensions that should use for MaiCStyle. Forming C/C++ into a 
     - Only C++11 is good enough
     - Now C++20 is mature on common compilers
     - Take care of compiled code in new features
+    - C++14 is a good balance between usable and features bloat
 - If statement with init-statement
 - Constexpr
 
@@ -44,8 +45,9 @@ All features and extensions that should use for MaiCStyle. Forming C/C++ into a 
 - Designated initializer (required G++ or Clang++)
 - Compiler-depended attributes, modifiers
 - Be careful of Unwind tables too
-- Compiler flags: ``
+- Compiler flags: ```
 
+```
 
 ## C++ avoid features
 - RTTI, `std::type_info`. If Reflection and Serialization is needed, roll your own implementation.
@@ -57,7 +59,7 @@ All features and extensions that should use for MaiCStyle. Forming C/C++ into a 
 
 
 ## Extended Uniserval Keywords
-See details in example/compiler_extenions
+See details in `example/compiler_extenions`
 - `nullptr`
 - `alignof`, `alignas`
 - `constexpr`
@@ -75,4 +77,4 @@ See details in example/compiler_extenions
 ## Combine C/C++
 Combine C/C++ with clang compiler to form a good language with some ergonomic features for productivity.
 One of showcase are Mai Vectormath library use this form of language to make API more ergonomic.
-I called this proC++ (Procedural Programming C++).
+I called this ProC++ (Procedural Programming C++).

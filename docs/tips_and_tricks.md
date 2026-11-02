@@ -1,5 +1,5 @@
 # Tips and tricks for programming (C and beyond)
-
+Simpler version of example, only code.
 
 ## Ring buffer and ring memory access
 ```C
@@ -115,9 +115,10 @@ const char* value_names[] = {
 ```
 
 
-## X Macros (extended for above version")
+## X Macros (extended for above version)
 X Macros:
 ```C
+DEFINE_ENTITY(NONE)
 DEFINE_ENTITY(PLAYER)
 DEFINE_ENTITY(BULLET)
 DEFINE_ENTITY(WALL)
@@ -131,7 +132,6 @@ Usages:
 #define DEFINE_ENTITY(X) X,
 enum Entity_Kind
 {
-    NONE,
     #include "XMacros.h"
 };
 
@@ -192,5 +192,6 @@ cl.exe /LD /GR- /EHs-c- /O2 /GS- /NODEFAULTLIB player_script.cpp
 ```
 
 
-## More about macros tricks
-- https://handmade.network/forums/t/1273-post_your_c_c_macro_tricks/3
+## Additional resources
+- Avoid Modern C++: https://www.youtube.com/watch?v=ShSGHb65f3M
+- More about macros tricks: https://handmade.network/forums/t/1273-post_your_c_c_macro_tricks/3

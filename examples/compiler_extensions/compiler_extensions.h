@@ -63,7 +63,7 @@
 
 
 /// __deprecated_msg
-/// Uniserval compiler of __deperecated_msg (Apple SDK)
+/// Uniserval compiler of __deperecated_msg (learnt from Apple SDK)
 #if !defined(__deprecated_msg)
 #if defined(_MSC_VER)
 #define __deprecated_msg(msg) __declspec(deprecated(msg))
@@ -85,7 +85,7 @@
 
 
 /// nullptr
-/// C++ nullptr 
+/// C++ nullptr
 #if !(defined(__cplusplus) || (__STDC_VERSION__ >= 202311L)) && !defined(nullptr)
 #define nullptr ((void*)0)
 #endif
@@ -97,29 +97,32 @@
 
 /// __enum_vtype
 /// Define underlying type for enum
-/// @note(maihd): 
+/// @note(maihd):
 ///     - `__enum_vtype` mean value type of enum, better than `__enum_type`
 ///     - `enum` in C does not support underlying type yet (until C23),
 ///     so maybe cause different struct layout inbetween C/C++ world
-#if !defined(__enum_vtype)
-#if defined(__cplusplus) || (__STDC_VERSION__ >= 202311L) || (defined(__GNUC__) && __has_extension(c_fixed_enum))
-#define __enum_vtype(T) : T
-#else
-#define __enum_vtype(T)
-#endif
-#endif
+//      - Final decision: don't used
+// #if !defined(__enum_vtype)
+// #if defined(__cplusplus) || (__STDC_VERSION__ >= 202311L) || (defined(__GNUC__) && __has_extension(c_fixed_enum))
+// #define __enum_vtype(T) : T
+// #else
+// #define __enum_vtype(T)
+// #endif
+// #endif
 
 
-/// __default_init 
+/// __default_init
 /// Default initialization for struct fields and function arguments
 /// Help to support universal API in C/C++ world (more ergonomics)
-#if !defined(__default_init)
-#ifdef __cplusplus
-#define __default_init(expr) = (expr)
-#else
-#define __default_init(expr)
-#endif
-#endif
+/// @note(maihd): I don't see it will be helpful, the compiler will generated constructors
+///     break the rules of PoD
+// #if !defined(__default_init)
+// #ifdef __cplusplus
+// #define __default_init(expr) = (expr)
+// #else
+// #define __default_init(expr)
+// #endif
+// #endif
 
 
 // -------------------------------------------------------------
@@ -175,21 +178,21 @@ constexpr auto __typename_GetTypeNameHelper()
             tail = i - 1;
         }
     }
-    
+
     /// Result of __typename
     /// Subset typeof StringBuffer
     /// @note: need manually change when StringBuffer changed
-    struct Result 
+    struct Result
     {
         int     memtag                  = 0x2e9497f4U;      // WEAK tag
         int     memref                  = 0;
         int     length                  = 0;
-        int     capacity                = sizeof(__FUNC__);        
+        int     capacity                = sizeof(__FUNC__);
         char    data[sizeof(__FUNC__)]  = "";
     };
 
     Result result;
-    
+
     int index = head;
     int& length = result.length;
     char* typeName = result.data;
@@ -253,7 +256,7 @@ constexpr auto __typename_GetTypeNameHelper()
         }
 
         *typeName++ = *funcName++;
-        length++;    
+        length++;
         index++;
     }
 
@@ -276,7 +279,7 @@ template <typename T>
 struct __defer_call
 {
     T f;
-    
+
     __forceinline __defer_call(const T& f) : f(f) {}
     __forceinline ~__defer_call() { f(); }
 };
@@ -285,8 +288,8 @@ struct __defer_call
 /// Helper to create __defer_call
 /// Final syntax of defer will be like
 ///     defer {
-///     }; // Require ';' 
-struct __defer_help 
+///     }; // Require ';'
+struct __defer_help
 {
     template <typename T>
     __defer_call<T> operator+(const T& f) { return __defer_call<T>(f); }
